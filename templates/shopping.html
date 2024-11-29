@@ -1,0 +1,275 @@
+<!-- 
+==========================
+* Developer * : Amir Mohammad Sharafi Nik
+========================== 
+-->
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سبد خرید</title>
+    <link rel="stylesheet" href="./styles/app.css">
+    <link rel="Icon" href="./IMG/header.png">
+</head>
+<body class="bg-gray-100 overflow-x-auto font-Dana" >
+    <!-- --- Desktop --- -->
+     <header class="hidden md:block bg-gray-100 px-5 lg:px-10 py-[24px]"> 
+      <nav class="flex justify-between flex-nowrap gap-x-2 md:gap-x-5 px-12 items-center">
+        <!-- Left Side Navigation -->
+        <div>
+          <ul class="flex gap-x-2 lg:gap-x-5 items-center text-base lg:text-[20px] ">
+            <li>
+              <a href="#" class="font-DanaDemibold  text-Primary text-[27px] lg:text-[30px] whitespace-nowrap">گیاه لند</a>
+            </li>
+            <li class="font-DanaMedium ">
+              <a href="index.html" target="_blank" class="text-Primary whitespace-nowrap">صفحه اصلی</a>
+            </li>
+            <li class="font-DanaMedium whitespace-nowrap hover:text-Primary transition-colors">
+              <a href="#footer-id">درباره ما</a>
+            </li>
+            <li class="font-DanaMedium whitespace-nowrap hover:text-Primary transition-colors">
+              <a href="#">وبلاگ</a>
+            </li>
+            <li class="font-DanaMedium whitespace-nowrap hover:text-Primary transition-colors">
+              <a href="#footer-id">تماس با ما</a>
+            </li>
+          </ul>
+        </div>
+        <input class="bg-[#dddadae7] focus:bg-slate-200 focus:outline-none bg-gray-100 font-DanaDemibold focus:transition-colors p-3 rounded-xl mt-3 text-[#737993] border border-Primary  w-[25%]" placeholder="سرچ گیاه" type="search">
+        <!-- Right Side Navigation (Icons & Login) -->
+        <div class="flex items-center gap-x-4 text-[20px] cursor-pointer relative">
+          <!-- Aftter Elemnet -->
+        <div id="count-cart-badge" class=" absolute -top-1 -right-1 flex-center text-[10px] size-5 border-2 border-white  rounded-full bg-green-500 text-white  text-center">1</div>
+          <!--  Shopping Icons -->
+          <div class="flex gap-x-3">
+            <div style="border: 1px solid #417F56; padding: 10px 12px; border-radius: 12px; flex-shrink: 0;">
+              <a href="shopping.html">
+                <img src="./IMG/Svg/HedaerSVG (3).png" class="w-[22px] h-[22px]" alt="">
+              </a>
+            </div>
+          </div>
+          <!-- profile Icon -->
+            <a href="profile.html">
+              <img src="./IMG/Frame 1261154035 (1).png" >
+            </a>
+        </div>
+      </nav>
+      
+     </header>    
+    <!-- Mobile Navbar -->
+     <header class="block md:hidden bg-gray-100 px-5 py-[16px]">
+      <nav class="flex justify-between items-center px-4">
+        <!-- Left Side (Menu Toggle and Logo) -->
+        <div class="flex items-center gap-x-4">
+          <div style="background-color: #dddadae7; padding: 15px 10px; border-radius: 9.5px; cursor: pointer;" id="menu-toggle">
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.5 10H15.5V8.33333H0.5V10ZM0.5 5.83333H15.5V4.16667H0.5V5.83333ZM0.5 0V1.66667H15.5V0H0.5Z" fill="#121212"/>
+            </svg>
+          </div>
+          <a href="#" class="font-DanaDemibold text-Primary text-base">گیاه لند</a>
+        </div>
+        <!-- Right Side (Icons) -->
+        <div class="cursor-pointer flex items-center gap-x-4">
+          <div class="rounded-lg border border-Primary w-8 h-8">
+            <img src="./IMG/Svg/HedaerSVG (3).png" alt="" style="margin: 5px;">
+          </div>
+          <div class="">
+            <a href="profile.html">
+              <img src="./IMG/img shopping/button.png " class="w-8 h-8  md:w-12 md:h-12 rounded-full"  alt="">
+            </a>
+          </div>
+        </div>
+      </nav>
+      <!-- Mobile Navigation Menu ( Hidden)  -->
+      <div id="mobile-menu" class="hidden bg-gray-100 px-5 py-[16px]"> 
+        <ul class="flex flex-col gap-y-4 text-base font-DanaDemibold items-center">
+          <li><a href="index.html" class="font-DanaMedium text-Primary">صفحه اصلی</a></li>
+          <li><a href="index.html">گیاه پزشک</a></li>
+          <li><a href="index.html">وبلاگ</a></li>
+          <li><a href="#footer-id">تماس با ما</a></li>
+        </ul>
+      </div> 
+          <input class="   focus:bg-slate-200 focus:outline-none focus:transition-colors w-full p-3 rounded-xl mt-3 font-DanaDemibold border border-Primary bg-gray-100" type="search" placeholder="سرچ گیاه"> 
+     </header>    
+      <!-- Space -->
+      <hr>
+      <!-- Icon Section Shopping -->
+      <div class="flex items-center justify-start mr-4 md:mr-28 mt-6 text-sm md:text-lg gap-x-2 font-DanaDemibold text-Primary">
+        <img src="./IMG/Svg/home.png" alt="خانه">
+        <a href="" class="hover:underline">خانه</a>
+        <img src="./IMG/Svg/arrow.png" alt="فلش">
+        <a href="" class="hover:underline">گیاه طبیعی</a>
+        <img src="./IMG/Svg/arrow.png" alt="فلش">
+        <a href="" class="hover:underline">گیاه یوکا</a>
+        <img src="./IMG/Svg/arrow.png" alt="فلش">
+        <a href="" class="hover:underline font-bold">سبد خرید</a>
+      </div>      
+      <!-- Product Section Shopping  -->
+      <div class="hidden lg:grid  grid-cols-12 lg:gap-5    mt-[141px]  mr-[108px] ">
+        <!-- right product -->
+        <div class="col-span-12 lg:col-span-8 w-[615px]  xl:w-[832px] h-[384px] rounded-2xl py-9 px-6 bg-[#FFFFFF] border border-[#CBCBCB]">
+          <p class="text-[#000000] text-[17.8px] font-DanaDemibold mb-[56px] mr-6">سبد خرید شما</p>
+          <div class="flex">
+            <img src="./IMG/img shopping/Frame 1261153834.png" alt="">
+            <div>
+              <p class="text-[22px] font-DanaDemibold text-[#212121]">گیاه طبیعی یوکا</p>
+              <p class="my-4 font-DanaMedium text-xl">فلاور گاردن</p>
+              <div>
+                <span class="inline-block ml-6 text-[#353535] text-base">قیمت:</span>
+                <span class="inline-block lg:text-xl  text-[#121212]  ">۵۶۰/۰۰۰ تومان</span>
+              </div>
+              <!-- button shooping -->
+              <button class="py-2 px-2 border border-[#CBCBCB] bg-[#FFFFFF] w-[154px] h-[59px] rounded-lg mt-4">
+                <!-- wrapper Icon Shopping -->
+                <div class="flex justify-between items-center">
+                  <img src="./IMG/img shopping/add.png" alt="Add" class="w-6 h-6 cursor-pointer" onclick="increaseCount()">
+                  <p id="countDisplay" class="text-[19px] text-black cursor-pointer" onclick="increaseCount()">1 تعداد</p>
+                  <img src="./IMG/img shopping/delete.png" alt="Delete" class="w-6 h-6 cursor-pointer" onclick="decreaseCount()">
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- left div -->
+        <div class="col-span-12  xl:mr-0 lg:col-span-4 w-full lg:w-[312px] h-[384px] rounded-2xl py-7 px-6 bg-[#FFFFFF] border border-[#CBCBCB] space-y-6">
+          <div class="flex justify-between">
+            <span class="inline-block text-base font-DanaMedium">تعداد گیاه:</span>
+            <span class="inline-block text-xl text-[#121212] font-DanaDemibold" >1</span>
+          </div>
+          <div class="flex justify-between ">
+            <span class="inline-block text-base font-DanaMedium">مجموع سبد خرید: </span>
+            <span class="inline-block text-xl text-[#121212] font-DanaDemibold"  >۵۶۰/۰۰۰ تومان</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="inline-block text-base font-DanaMedium">ارسال توسط:</span>
+            <span class="inline-block text-xl text-[#121212] font-DanaDemibold"   >گیاه لند</span>
+          </div>
+          <input class="w-[264px] h-16 bg-[#EFEFEF] py-2 px-2 mx-auto rounded-xl  text-[#121212] font-DanaDemibold"
+          placeholder="کد تخفیف:کد تخفیف را وارد کنید"
+          >
+          </input>
+          <button class="w-[264px] h-16 bg-Primary text-[19px] py-2 px-2 mx-auto rounded-xl">
+            <a href="">
+              <p  class="text-white text-[18px] font-DanaDemibold">سفارش و خرید</p>
+            </a>
+          </button>
+        </div>
+      </div>      
+     <!-- Shopping Cart Section -->
+      <div class="lg:hidden px-4 mb-10">
+      <div class="container mx-auto">
+        <p class="mr-4 mt-16 mb-8 text-lg md:text-2xl font-DanaBold">سبد خرید شما</p>
+    
+        <!--  prodvut  -->
+        <div class="flex gap-4 items-center">
+          <!-- Img Pruduct -->
+          <img src="./IMG/img shopping/Frame 1261153834.png" alt="گیاه طبیعی یوکا" class="w-32 md:w-40 rounded-lg">
+    
+          <!--  Info Product -->
+          <div class="flex flex-col">
+            <p class="text-base md:text-lg font-DanaDemibold text-gray-800">گیاه طبیعی یوکا</p>
+            <p class="my-2 text-sm md:text-base font-DanaMedium text-gray-600">فلاور گاردن</p>
+    
+            <div class="flex items-center gap-x-2">
+              <span class="text-sm md:text-base">قیمت:</span>
+              <span class="text-sm md:text-base text-orange-600 font-semibold">۵۶۰/۰۰۰ تومان</span>
+            </div>
+    
+            <!--  Button Section -->
+            <button class="flex items-center justify-between gap-2 py-2 px-3 mt-4 border border-gray-300 rounded-lg bg-white w-36 md:w-40 h-12">
+              <img src="./IMG/img shopping/add.png" alt="افزایش تعداد">
+              <p class="text-sm md:text-base text-black">1 تعداد</p>
+              <img src="./IMG/img shopping/delete.png" alt="کاهش تعداد">
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>      
+       <!-- spcace Hr -->
+       <hr>
+       <div class="mt-10 lg:hidden"> 
+           <div class="container space-y-6">
+             <!--  Details  -->
+             <div class="flex justify-between">
+               <span class="inline-block text-base font-DanaMedium">تعداد گیاه:</span>
+               <span class="inline-block text-base md:text-xl text-[#121212] font-DanaDemibold">1</span>
+             </div>
+             <div class="flex justify-between">
+               <span class="inline-block text-base font-DanaMedium">مجموع سبد خرید:</span>
+               <span class="inline-block text-base md:text-xl text-[#121212] font-DanaDemibold">۵۶۰/۰۰۰ تومان</span>
+             </div>
+             <div class="flex justify-between">
+               <span class="inline-block text-base font-DanaMedium">ارسال توسط:</span>
+               <span class="inline-block text-base md:text-xl text-[#121212] font-DanaDemibold">گیاه لند</span>
+             </div>   
+           <!-- btn  -->
+             <div class="space-y-4">
+              <!-- btn for by  -->
+               <button class="w-full h-10 bg-[#EFEFEF] py-2 px-2 rounded-xl">
+                 <div class="flex gap-x-2 pr-2">
+                   <p class="text-[#121212] text-base font-DanaDemibold">کد تخفیف:</p>
+                   <p class="text-[#909090] font-[14px] font-DanaMedium">کد تخفیف را وارد کنید</p>
+                 </div>
+               </button>
+               <!-- btn for Self  -->
+               <button class="w-full h-10 bg-Primary py-2 px-2 rounded-xl">
+                 <p class="text-white text-[14px] text-center font-DanaDemibold">سفارش و خرید</p>
+               </button>
+             </div>
+           </div>
+       </div>       
+          <!-- footer -->
+       <footer class=" bg-slate-200 pt-10 pb-5 mt-[64px] lg:mt-[130px]" id="footer-id">
+            <div class="container ">
+              <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 text-center lg:text-left">
+                <!-- Info Text -->
+                <div class="space-y-4 mx-auto lg:mx-0 order-2 lg:order-1">
+                  <p class="text-base md:text-xl font-semibold text-green-600 mb-3 md:mb-6 font-DanaDemibold">گیاه لند</p>
+                  <p class="text-[#505050] leading-5 text-[14px]  md:text-base font-DanaDemibold">
+                    گیاه لند سعی بر این دارد با ارائه خدمات نوین در حوزه فروش گیاهان باعث راحتی شما در خرید انواع گیاه شود.
+                    تنوع گیاهان و همچنین ایجاد بستری مناسب برای مشاوره با گیاه پزشک از دیگر مزیت‌های گیاه لند می‌باشد.
+                  </p>
+                  <div class="text-[#444859] text-base md:text-xl mt-10 md:mt-[51px] font-DanaMedium" id="section-footer">
+                    <span class="inline-block">تلفن پشتیبانی  :  </span>
+                    <span class="inline-block "> 0212۴44 </span>
+                  </div>
+                </div>
+                 <!-- column 1 -->
+                <div class="space-y-2 mx-auto lg:mx-0 order-1 lg:order2 ">
+                  <p class="text-[#505050] text-base md:text-xl font-DanaDemibold  mb-6">آپارتمان</p>
+                  <p class="text-[#606060] text-base md:text-xl font-DanaMedium">بابا آدم</p>
+                  <p class="text-[#606060] text-base md:text-xl font-DanaMedium">یوکا</p>
+                  <p class="text-[#606060] text-base md:text-xl font-DanaMedium">سانسوریا</p>
+                </div>
+                
+                 <!-- column 2 -->
+                <div class="space-y-2 mx-auto lg:mx-0 order-1 lg:order2">
+                  <p class="text-[#505050] text-base md:text-xl font-DanaDemibold  mb-6">تزئینی</p>
+                  <p class="text-[#606060] text-base md:text-xl font-DanaMedium">پشم</p>
+                  <p class="text-[#606060] text-base md:text-xl font-DanaMedium">گراسولا</p>
+                  <p class="text-[#606060] text-base md:text-xl font-DanaMedium">گراسولا حرفه ای</p>
+                </div>
+               <!-- column 3 -->
+                <div class="space-y-2 mx-auto lg:mx-0 order-1 lg:order2">
+                  <p class="text-[#505050] text-base md:text-xl font-DanaDemibold  mb-6">کادویی</p>
+                  <p class="text-[#606060] text-base md:text-xl font-DanaMedium">آنتوریوم</p>
+                  <p class="text-[#606060] text-base md:text-xl font-DanaMedium">بونسای</p>
+                  <p class="text-[#606060] text-base md:text-xl font-DanaMedium">بنت قنسول</p>
+                </div>
+              </div>
+              <!-- Name Developer -->
+              <div class="flex justify-center items-center mt-10 md:mt-16 px-4">
+                <p class="text-center text-sm md:text-base lg:text-lg">
+                  طراحی و اجرا توسط : 
+                  <span class="text-primary text-[16px] md:text-xl lg:text-2xl font-DanaDemibold">
+                    امیرمحمد شرفی نیک &copy;
+                  </span>
+                </p>
+              </div>
+            </div>
+       </footer>  
+<script src="./scripts/index.js"></script>                          
+</body>
+</html>

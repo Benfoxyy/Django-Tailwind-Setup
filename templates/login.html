@@ -1,0 +1,77 @@
+<!-- 
+==========================
+* Developer * : Amir Mohammad Sharafi Nik
+========================== 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <!-- head  -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فرم ورود</title>
+    <link rel="stylesheet" href="./styles/app.css">
+    <link rel="icon" href="./IMG/header.png">
+  </head>
+  <!-- body -->
+  <body class="h-screen bg-gray-100 md:overflow-hidden font-Dana">
+       <!-- Mian -->
+       <mian>
+        <!-- Section login -->
+        <section>
+              <!--  GRID SECTION    -->
+              <div class="grid grid-cols-1 md:grid-cols-2 h-full">  
+                <!-- Img section    -->
+                <div class="w-full h-full flex justify-center md:justify-start items-center ">
+                  <img 
+                    src="./IMG/login Img/desktop.png" 
+                    class="w-auto h-auto max-w-full max-h-full object-cover  md:object-contain "
+                    alt="تصویر"
+                  />
+              </div>
+              <div class="flex items-center justify-center h-full p-4 mt-8">
+                <form action="" class="w-full max-w-sm md:max-w-md lg:max-w-lg">
+                  <h1 class="mb-5 md:mb-8 text-[18px] text-[#121212] md:text-xl font-DanaDemibold text-center md:text-end">
+                    ورود 
+                  </h1>
+                  <!-- Input Number  -->
+                  <div class="text-[#717171] mb-8">
+                    <input 
+                      id="phone"  
+                      type="number" 
+                      class="w-full px-3 py-4 border border-[#CBCBCB] rounded-xl text-center md:text-end focus:border-Primary focus:outline-none font-DanaDemibold focus:bg-slate-100 transition duration-200" 
+                      placeholder="شماره موبایل"
+                      required
+                    />
+                  </div>
+                  <!--  Input password 1-->
+                  <div class="flex items-center justify-between border border-[#CBCBCB] rounded-xl px-3 py-4 mb-8 bg-[#F8F8F8] ">
+                    <input 
+                      type="password" 
+                      class="w-full text-center md:text-end focus:border-Primary focus:outline-none font-DanaDemibold text-[#717171] focus:bg-slate-100 focus:ring-0 transition duration-200" 
+                      placeholder=" رمز عبور"
+                      required
+                    />
+                  </div>
+                  <!--  button login -->
+                    <button class="bg-Primary w-full text-white text-base md:text-[18px] py-4 rounded-xl font-DanaDemibold" type="submit">
+                      <a href="profile.html">                ثبت نام
+                      </a>
+                    </button>
+                  <!-- TEXT Button -->
+                  <div class="mt-4 md:mt-5">
+                    <p class="text-[#121212] text-[14px] md:text-base text-center font-DanaDemibold">
+                      <a href="sign.html">
+                          <span class="inline-block text-Primary text-[14px] md:text-base " >ثبت نام کنید</span> 
+                      </a>
+                      حساب کاربری ندارید؟
+                    </p>
+                  </div>
+                </div>
+                </form>
+              </div>
+            </section>
+       </mian> 
+</body>
+</html>
