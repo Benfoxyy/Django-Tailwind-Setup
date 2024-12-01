@@ -3,18 +3,18 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, Group, Permission
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.db import models
 
 
 class UserType(models.IntegerChoices):
-    customer = 1, _('customer')
-    admin = 2, _('admin')
-    superuser = 3, _('superuser')
-
+    customer = 1 , _('customer')
+    admin = 2 , _('admin')
+    superuser = 3 , _('superuser')
 
 class UserManager(BaseUserManager):
     """
-    Custom user model manager where email is the unique identifier
+    Custom user model manager where email is the unique identifiers
     for authentication instead of usernames.
     """
 
@@ -34,8 +34,9 @@ class UserManager(BaseUserManager):
         """
         Create and save a SuperUser with the given email and password.
         """
-        extra_fields.setdefault("is_superuser", True)
         extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("is_active", True)
         extra_fields.setdefault("is_verified", True)
         extra_fields.setdefault("user_type", UserType.superuser.value)
 
@@ -49,8 +50,8 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(_("email address"), unique=True)
-    is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
     user_type = models.IntegerField(choices=UserType.choices, default=UserType.customer.value)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -65,22 +66,23 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE,related_name="user_profile")
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    created_date = models.DateTimeField(auto_now_add=True)
-    updated_date = models.DateTimeField(auto_now=True)
+# class Profile(models.Model):
+#     user = models.OneToOneField('User', on_delete=models.CASCADE,related_name="user_profile")
+#     first_name = models.CharField(max_length=255)
+#     last_name = models.CharField(max_length=255)
+#     created_date = models.DateTimeField(auto_now_add=True)
+#     updated_date = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return self.user.email
+#     def __str__(self):
+#         return self.user.email
     
-    def get_fullname(self):
-        if self.first_name or self.last_name:
-            return self.first_name + ' ' + self.last_name
-        return 'کاربر جدید'
+#     def get_fullname(self):
+#         if self.first_name or self.last_name:
+#             return self.first_name + ' ' + self.last_name
+#         return 'کاربر جدید'
     
-@receiver(post_save, sender=User)
-def create_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance, pk=instance.pk)
+# @receiver(post_save,sender=User)
+# def create_profile(sender,instance,created,**kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
+        

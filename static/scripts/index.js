@@ -21,4 +21,14 @@ menuToggle.addEventListener('click', () => {
       function updateCountDisplay() {
       document.getElementById('countDisplay').textContent = `${count} تعداد`;
     }
+ 
+
+
+
+
+
+
+
+
+
 
