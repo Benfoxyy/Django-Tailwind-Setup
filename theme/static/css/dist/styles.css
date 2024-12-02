@@ -1247,6 +1247,10 @@ select {
   width: 312px;
 }
 
+.w-\[420px\] {
+  width: 420px;
+}
+
 .w-\[615px\] {
   width: 615px;
 }
@@ -2060,10 +2064,6 @@ select {
     width: 235px;
   }
 
-  .sm\:w-\[256px\] {
-    width: 256px;
-  }
-
   .sm\:w-\[264px\] {
     width: 264px;
   }
@@ -2215,10 +2215,6 @@ select {
 
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .md\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .md\:justify-start {

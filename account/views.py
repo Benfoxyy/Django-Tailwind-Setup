@@ -1,8 +1,8 @@
 from django.contrib.auth.views import LoginView,LogoutView
 from django.contrib.auth import login
 from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 from django.views.generic import FormView
-from django.shortcuts import redirect
 from .forms import AccountLoginForm,AccountRegisterForm
 
 class AccountRegisterView(FormView):
@@ -15,11 +15,11 @@ class AccountRegisterView(FormView):
         login(self.request,user)
         return super().form_valid(form)
     
-class AccountLoginView(SuccessMessageMixin,LoginView):
+class AccountLoginView(LoginView):
     template_name = 'account/login.html'
     form_class = AccountLoginForm
     redirect_authenticated_user = True
-    success_message = 'User successfully logged in'
+    success_url = reverse_lazy('website:home')
 
 class AccountLogOutView(SuccessMessageMixin,LogoutView):
     pass

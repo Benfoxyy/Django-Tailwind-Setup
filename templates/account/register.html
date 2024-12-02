@@ -9,7 +9,7 @@
 <html lang="fa">
   <!-- Head -->
 <head>
-    {% tailwind_css %}
+  {% tailwind_css %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'styles/app.css' %}">
@@ -17,7 +17,7 @@
     <title>فرم لاگین</title>
 </head>
   <!-- Body -->
-  <body class="h-screen bg-gray-100 md:overflow-hidden">
+  <body class="h-screen bg-gray-100 ">
     <!-- Mian -->
    <main>
       <!-- Section Sign -->
@@ -40,8 +40,6 @@
             </h1>
             <!-- Input Gmail -->
             <div class="text-[#717171] mb-8">
-              <label for=""></label>
-    
               <input 
                 type="email" 
                 name="email"
@@ -53,8 +51,8 @@
             <!-- input password 1 -->
             <div class="flex items-center justify-between border border-[#CBCBCB] rounded-xl px-3 py-4 mb-8 bg-[#F8F8F8] ">
               <input 
-                type="password"
-                name="password1" 
+                type="password" 
+                name="password1"
                 class="w-full text-center md:text-end focus:border-Primary focus:outline-none font-DanaDemibold text-[#717171] focus:bg-slate-100 focus:ring-0 transition duration-200" 
                 placeholder="تعریف رمز عبور"
                 required
