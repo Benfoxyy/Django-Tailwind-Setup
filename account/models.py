@@ -65,23 +65,24 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-# class Profile(models.Model):
-#     user = models.OneToOneField('User', on_delete=models.CASCADE,related_name="user_profile")
-#     first_name = models.CharField(max_length=255)
-#     last_name = models.CharField(max_length=255)
-#     created_date = models.DateTimeField(auto_now_add=True)
-#     updated_date = models.DateTimeField(auto_now=True)
+class Profile(models.Model):
+    user = models.OneToOneField('User', on_delete=models.CASCADE,related_name="user_profile")
+    first_name = models.CharField(max_length=255,null=True, blank=True)
+    last_name = models.CharField(max_length=255,null=True, blank=True)
+    address = models.TextField(null=True, blank=True)
+    avatar = models.ImageField(upload_to='products/',default='default/profile-default.png')
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
 
-#     def __str__(self):
-#         return self.user.email
+    def __str__(self):
+        return self.user.email
     
-#     def get_fullname(self):
-#         if self.first_name or self.last_name:
-#             return self.first_name + ' ' + self.last_name
-#         return 'کاربر جدید'
+    def get_fullname(self):
+        if self.first_name or self.last_name:
+            return self.first_name + ' ' + self.last_name
+        return 'کاربر جدید'
     
-# @receiver(post_save,sender=User)
-# def create_profile(sender,instance,created,**kwargs):
-#     if created:
-#         Profile.objects.create(user=instance)
-        
+@receiver(post_save,sender=User)
+def create_profile(sender,instance,created,**kwargs):
+    if created:
+        Profile.objects.create(user=instance)

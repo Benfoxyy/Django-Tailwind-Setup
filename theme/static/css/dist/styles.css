@@ -1139,6 +1139,10 @@ select {
   height: 59px;
 }
 
+.h-\[60px\] {
+  height: 60px;
+}
+
 .h-\[68px\] {
   height: 68px;
 }
@@ -1249,6 +1253,10 @@ select {
 
 .w-\[420px\] {
   width: 420px;
+}
+
+.w-\[60px\] {
+  width: 60px;
 }
 
 .w-\[615px\] {
@@ -1570,11 +1578,6 @@ select {
 .bg-\[\#F6F6F6\] {
   --tw-bg-opacity: 1;
   background-color: rgb(246 246 246 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#F8F8F8\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 248 248 / var(--tw-bg-opacity, 1));
 }
 
 .bg-\[\#FFF2F2\] {
@@ -1979,12 +1982,6 @@ select {
   transition-duration: 150ms;
 }
 
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
 .transition-colors {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -2036,16 +2033,16 @@ select {
 }
 
 @media (min-width: 640px) {
-  .sm\:mr-\[5px\] {
-    margin-right: 5px;
-  }
-
   .sm\:mt-10 {
     margin-top: 2.5rem;
   }
 
   .sm\:mt-\[1\.5rem\] {
     margin-top: 1.5rem;
+  }
+
+  .sm\:mr-\[5px\] {
+    margin-right: 5px;
   }
 
   .sm\:w-6 {
@@ -2219,10 +2216,6 @@ select {
 
   .md\:justify-start {
     justify-content: flex-start;
-  }
-
-  .md\:justify-center {
-    justify-content: center;
   }
 
   .md\:gap-x-5 {

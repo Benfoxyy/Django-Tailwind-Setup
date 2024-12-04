@@ -1,4 +1,4 @@
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,DetailView,TemplateView
 from .models import ProductModel,ProductCategoryModel
 
 class WebsiteHomeView(ListView):
@@ -17,3 +17,7 @@ class ProductDetailVeiw(DetailView):
     template_name = 'website/product-detail.html'
     queryset = ProductModel.objects.all()
     context_object_name = 'product'
+
+
+class CartView(TemplateView):
+    template_name = 'website/shopping.html'

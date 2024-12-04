@@ -1,0 +1,142 @@
+<!-- 
+==========================
+* Developer * : Amir Mohammad Sharafi Nik
+========================== 
+-->
+
+{% extends "base.html" %}
+{% load static %}
+{% load static tailwind_tags %}
+
+{% block content %}
+  
+
+      <hr>
+      <!-- Icon Section Shopping -->
+      <div class="flex items-center justify-start mr-4 md:mr-28 mt-6 text-sm md:text-lg gap-x-2 font-DanaDemibold text-Primary">
+        <img src="{% static 'IMG/Svg/home.png' %}" alt="خانه">
+        <a href="" class="hover:underline">خانه</a>
+        <img src="{% static 'IMG/Svg/arrow.png' %}" alt="فلش">
+        <a href="" class="hover:underline">گیاه طبیعی</a>
+        <img src="{% static 'IMG/Svg/arrow.png' %}" alt="فلش">
+        <a href="" class="hover:underline">گیاه یوکا</a>
+        <img src="{% static 'IMG/Svg/arrow.png' %}" alt="فلش">
+        <a href="" class="hover:underline font-bold">سبد خرید</a>
+      </div>      
+      <!-- Product Section Shopping  -->
+      <div class="hidden lg:grid  grid-cols-12 lg:gap-5    mt-[141px]  mr-[108px] ">
+        <!-- right product -->
+        <div class="col-span-12 lg:col-span-8 w-[615px]  xl:w-[832px] h-[384px] rounded-2xl py-9 px-6 bg-[#FFFFFF] border border-[#CBCBCB]">
+          <p class="text-[#000000] text-[17.8px] font-DanaDemibold mb-[56px] mr-6">سبد خرید شما</p>
+          <div class="flex">
+            <img src="{% static 'IMG/img shopping/Frame 1261153834.png' %}" alt="">
+            <div>
+              <p class="text-[22px] font-DanaDemibold text-[#212121]">گیاه طبیعی یوکا</p>
+              <p class="my-4 font-DanaMedium text-xl">فلاور گاردن</p>
+              <div>
+                <span class="inline-block ml-6 text-[#353535] text-base">قیمت:</span>
+                <span class="inline-block lg:text-xl  text-[#121212]  ">۵۶۰/۰۰۰ تومان</span>
+              </div>
+              <!-- button shooping -->
+              <button class="py-2 px-2 border border-[#CBCBCB] bg-[#FFFFFF] w-[154px] h-[59px] rounded-lg mt-4">
+                <!-- wrapper Icon Shopping -->
+                <div class="flex justify-between items-center">
+                  <img src="{% static 'IMG/img shopping/add.png' %}" alt="Add" class="w-6 h-6 cursor-pointer" onclick="increaseCount()">
+                  <p id="countDisplay" class="text-[19px] text-black cursor-pointer" onclick="increaseCount()">1 تعداد</p>
+                  <img src="{% static 'IMG/img shopping/delete.png' %}" alt="Delete" class="w-6 h-6 cursor-pointer" onclick="decreaseCount()">
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- left div -->
+        <div class="col-span-12  xl:mr-0 lg:col-span-4 w-full lg:w-[312px] h-[384px] rounded-2xl py-7 px-6 bg-[#FFFFFF] border border-[#CBCBCB] space-y-6">
+          <div class="flex justify-between">
+            <span class="inline-block text-base font-DanaMedium">تعداد گیاه:</span>
+            <span class="inline-block text-xl text-[#121212] font-DanaDemibold" >1</span>
+          </div>
+          <div class="flex justify-between ">
+            <span class="inline-block text-base font-DanaMedium">مجموع سبد خرید: </span>
+            <span class="inline-block text-xl text-[#121212] font-DanaDemibold"  >۵۶۰/۰۰۰ تومان</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="inline-block text-base font-DanaMedium">ارسال توسط:</span>
+            <span class="inline-block text-xl text-[#121212] font-DanaDemibold"   >گیاه لند</span>
+          </div>
+          <input class="w-[264px] h-16 bg-[#EFEFEF] py-2 px-2 mx-auto rounded-xl  text-[#121212] font-DanaDemibold"
+          placeholder="کد تخفیف:کد تخفیف را وارد کنید"
+          >
+          </input>
+          <button class="w-[264px] h-16 bg-Primary text-[19px] py-2 px-2 mx-auto rounded-xl">
+            <a href="">
+              <p  class="text-white text-[18px] font-DanaDemibold">سفارش و خرید</p>
+            </a>
+          </button>
+        </div>
+      </div>      
+     <!-- Shopping Cart Section -->
+      <div class="lg:hidden px-4 mb-10">
+      <div class="container mx-auto">
+        <p class="mr-4 mt-16 mb-8 text-lg md:text-2xl font-DanaBold">سبد خرید شما</p>
+    
+        <!--  prodvut  -->
+        <div class="flex gap-4 items-center">
+          <!-- Img Pruduct -->
+          <img src="{% static 'IMG/img shopping/Frame 1261153834.png' %}" alt="گیاه طبیعی یوکا" class="w-32 md:w-40 rounded-lg">
+    
+          <!--  Info Product -->
+          <div class="flex flex-col">
+            <p class="text-base md:text-lg font-DanaDemibold text-gray-800">گیاه طبیعی یوکا</p>
+            <p class="my-2 text-sm md:text-base font-DanaMedium text-gray-600">فلاور گاردن</p>
+    
+            <div class="flex items-center gap-x-2">
+              <span class="text-sm md:text-base">قیمت:</span>
+              <span class="text-sm md:text-base text-orange-600 font-semibold">۵۶۰/۰۰۰ تومان</span>
+            </div>
+    
+            <!--  Button Section -->
+            <button class="flex items-center justify-between gap-2 py-2 px-3 mt-4 border border-gray-300 rounded-lg bg-white w-36 md:w-40 h-12">
+              <img src="{% static 'IMG/img shopping/add.png' %}" alt="افزایش تعداد">
+              <p class="text-sm md:text-base text-black">1 تعداد</p>
+              <img src="{% static 'IMG/img shopping/delete.png' %}" alt="کاهش تعداد">
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>      
+       <!-- spcace Hr -->
+       <hr>
+       <div class="mt-10 lg:hidden"> 
+           <div class="container space-y-6">
+             <!--  Details  -->
+             <div class="flex justify-between">
+               <span class="inline-block text-base font-DanaMedium">تعداد گیاه:</span>
+               <span class="inline-block text-base md:text-xl text-[#121212] font-DanaDemibold">1</span>
+             </div>
+             <div class="flex justify-between">
+               <span class="inline-block text-base font-DanaMedium">مجموع سبد خرید:</span>
+               <span class="inline-block text-base md:text-xl text-[#121212] font-DanaDemibold">۵۶۰/۰۰۰ تومان</span>
+             </div>
+             <div class="flex justify-between">
+               <span class="inline-block text-base font-DanaMedium">ارسال توسط:</span>
+               <span class="inline-block text-base md:text-xl text-[#121212] font-DanaDemibold">گیاه لند</span>
+             </div>   
+           <!-- btn  -->
+             <div class="space-y-4">
+              <!-- btn for by  -->
+               <button class="w-full h-10 bg-[#EFEFEF] py-2 px-2 rounded-xl">
+                 <div class="flex gap-x-2 pr-2">
+                   <p class="text-[#121212] text-base font-DanaDemibold">کد تخفیف:</p>
+                   <p class="text-[#909090] font-[14px] font-DanaMedium">کد تخفیف را وارد کنید</p>
+                 </div>
+               </button>
+               <!-- btn for Self  -->
+               <button class="w-full h-10 bg-Primary py-2 px-2 rounded-xl">
+                 <p class="text-white text-[14px] text-center font-DanaDemibold">سفارش و خرید</p>
+               </button>
+             </div>
+           </div>
+       </div>       
+       {% endblock content %}             
+</body>
+</html>

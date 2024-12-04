@@ -24,8 +24,11 @@
         <li>
           <a href="{% url 'website:home' %}" class="font-DanaDemibold  text-Primary text-[27px] lg:text-[30px] whitespace-nowrap">گیاه لند</a>
         </li>
-        <li class="font-DanaMedium ">
+        <!-- <li class="font-DanaMedium ">
           <a href="{% url 'website:home' %}" class="text-Primary whitespace-nowrap">صفحه اصلی</a>
+        </li> -->
+        <li class="font-DanaMedium whitespace-nowrap hover:text-Primary transition-colors">
+          <a href="{% url 'website:home' %}">صفحه اصلی</a>
         </li>
         <li class="font-DanaMedium whitespace-nowrap hover:text-Primary transition-colors">
           <a href="#footer-id">درباره ما</a>
@@ -45,15 +48,15 @@
       <div class="flex gap-x-3 relative">
         <div id="count-cart-badge" class=" absolute -top-1 -right-1 flex-center text-[10px] size-5 border-2 border-white  rounded-full bg-green-500 text-white  text-center font-DanaDemibold">1</div>
         <div style="border: 1px solid #417F56; padding: 10px 12px; border-radius: 12px; flex-shrink: 0;">
-          <a href="shopping.html">
+          <a href="{% url 'website:cart' %}">
             <img src="{% static 'IMG/Svg/HedaerSVG (3).png' %}" class="w-[22px] h-[22px]" alt="">
           </a>
         </div>
       </div>
       <!-- Login Icon -->
        {% if user.is_authenticated %}
-      <a href="profile.html">
-        <img src="{% static 'IMG/Frame 1261154035 (1).png' %}" >
+      <a href="{% url 'dashboard:profile' pk=user.pk %}">
+        <img src="{{user.user_profile.avatar.url}}" class="w-[60px] h-[60px] rounded-full" >
       </a>
        {% else %}
 
@@ -86,15 +89,21 @@
       <div id="count-cart-badge" class=" absolute -top-1 -right-1 flex-center text-[11px] size-5 border-2 border-white  rounded-full bg-green-500 text-white  text-center">2</div>
 
       <div class="rounded-lg border border-Primary w-8 h-8 ">
-        <a href="shopping.html">
+        <a href="{% url 'website:cart' %}">
           <img src="{% static 'IMG/Svg/HedaerSVG (3).png' %}" alt="" style="margin: 5px;">
         </a>
       </div>
+      {% if user.is_authenticated %}
+      <a href="{% url 'dashboard:profile' pk=user.pk %}">
+        <img src="{{user.user_profile.avatar.url}}" class="w-[60px] h-[60px] rounded-full" >
+      </a>
+      {% else %}
       <div class="border border-Primary rounded-lg w-8 h-8">
-        <a href="sign.html">
+        <a href="{% url 'account:login' %}">
           <img src="{% static 'IMG/Svg/HedaerSVG (2).png' %}" alt="" class="w-5 h-5" style="margin: 5px;">
         </a>
       </div>
+      {% endif %}
     </div>
   </nav>
    <!-- Mobile Navigation Menu ( Hidden)  -->

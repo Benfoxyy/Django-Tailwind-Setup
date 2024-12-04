@@ -8,9 +8,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("account/", include("account.urls")),
     path("", include("website.urls")),
+    path("dashboard/", include("dashboard.urls")),
 ]
+
+
+handler404 = "core.error_views.error_404"  # page_not_found
+
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
-                          document_root=settings.STATIC_ROOT)
+                        document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+                        document_root=settings.MEDIA_ROOT)

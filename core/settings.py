@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django_browser_reload',
     'account',
     'website',
+    'dashboard',
 
 ]
 
@@ -136,4 +137,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/account/login/'
+LOGOUT_REDIRECT_URL = '/'

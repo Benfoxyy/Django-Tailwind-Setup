@@ -1,0 +1,75 @@
+<!-- 
+==========================
+* Developer * : Amir Mohammad Sharafi Nik
+========================== 
+-->
+{% extends "base.html" %}
+{% load static %}
+{% load static tailwind_tags %}
+
+{% block content %}
+  
+
+
+    <hr>
+<!--Start Coding Main-->
+<main>
+  <!-- Section Profile -->
+  <section class="mt-12">
+    <div class="container flex flex-wrap gap-6">
+      <!-- Right profile -->
+      <div class="text-center md:text-left w-full md:w-auto">
+        <div class="flex gap-x-2 mb-12 items-center justify-center md:justify-start">
+          <img src="{{object.avatar.url}}" alt="" class="w-20 h-20 rounded-full">
+          <div>
+            <p class="text-base text-[#121212] font-DanaDemibold">{{object.get_fullname}}</p>
+            <p class="text-[14px] text-[#717171] mt-1 font-DanaDemibold">{{object.user.email}}</p>
+          </div>
+        </div>
+        <!-- User Info -->
+        <div class="flex-col inline-flex space-y-3 font-DanaDemibold">
+          <div class="hidden lg:block">
+            <p  class="w-full text-Primary bg-Special p-4 rounded-xl text-center mb-8 h-[58px]">مشخصات حساب کاربری</p>
+            <a href="{% url 'account:logout' %}">
+              <p class="bg-[#FFF2F2] rounded-xl px-2 w-full sm:w-[264px] h-[58px] p-4 text-center text-[#ED2E2E]">خروج از حساب کاربری</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Left profile -->
+      <div class="w-full md:w-auto">
+        <div class="block mr-[35px] border border-[#EFEFEF] py-3 px-5 rounded-xl" id="useraccount-section">
+          <h1 class="mb-5 text-[#101828] font-DanaDemibold text-[18.4px] mt-1">مشخصات حساب کاربری</h1>
+        <form action="." method="post" id="profile-form" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="flex items-center justify-center sm:justify-start gap-x-4 mb-12">
+            <input type="file" accept=".jpg, .jpeg" style="display:none;" id="fileInput" name="avatar" src="{% static 'IMG/profile-default.png' %}">
+            <img src="{{form.instance.avatar.url}}" alt="" class="w-[60px] h-[60px] rounded-full" id="prifile-id">
+            <button class="bg-Primary rounded-xl w-full sm:w-[156px] h-10 text-center text-[14px] text-white font-DanaDemibold px-2" onclick="document.getElementById('fileInput').click();">انتخاب عکس</button>
+            <!-- <button class="bg-[#F6F6F6] border w-full sm:w-[80px] h-10 border-Primary rounded-xl text-Primary text-[14px] py-1 whitespace-nowrap px-1 font-DanaDemibold">حذف تصویر</button> -->
+          </div>
+        
+          <!-- Form fields for user details -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 text-[#717171]">
+            <input name="first_name" type="text" class="w-full text-center font-DanaDemibold h-12 rounded-xl border border-[#717171] pr-[5.7px]"  placeholder="نام" {% if form.instance.first_name %}value="{{ form.instance.first_name }}"{% endif %}>
+            <input name="last_name" type="text" class="w-full text-center font-DanaDemibold h-12 rounded-xl border border-[#717171] pr-[5.7px]"  placeholder="نام خوانوادگی" {% if form.instance.first_name %}value="{{ form.instance.last_name }}"{% endif %}>
+            <!-- <input type="text" class="w-full text-base font-DanaDemibold h-12 rounded-xl border border-[#717171] pr-[5.7px]" required placeholder="شماره تماس">
+            <input type="text" class="w-full text-base font-DanaDemibold h-12 rounded-xl border border-[#717171] pr-[5.7px]" required placeholder="ایمیل">
+            <input type="text" class="w-full text-base font-DanaDemibold h-12 rounded-xl border border-[#717171] pr-[5.7px]" required placeholder="ادرس">
+            <input type="text" class="w-full text-base font-DanaDemibold h-12 rounded-xl border border-[#717171] pr-[5.7px]" required placeholder="تلفن منزل"> -->
+          </div>
+          <!-- Adress User -->
+          <div class="grid-grid-cols-1 mt-10">
+            <input name="address" type="text" class="w-full text-base font-DanaDemibold h-12 rounded-xl border border-[#717171] pr-[5.7px]" placeholder="ادرس" {% if form.instance.address %}value="{{ form.instance.address }}"{% endif %}>
+          </div>
+          <div class="flex justify-end mt-12 items-center">
+            <button class="w-full sm:w-[172px] h-12 px-4 rounded-xl bg-Primary text-center text-white font-DanaDemibold text-[18px]" type="submit">ذخیره کردن</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+{% endblock content %}
+</html>
