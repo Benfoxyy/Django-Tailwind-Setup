@@ -24,14 +24,16 @@
         <a href="" class="hover:underline font-bold">سبد خرید</a>
       </div>      
       <!-- Product Section Shopping  -->
+
+      {% for product in cartlist %}
       <div class="hidden lg:grid  grid-cols-12 lg:gap-5    mt-[141px]  mr-[108px] ">
         <!-- right product -->
         <div class="col-span-12 lg:col-span-8 w-[615px]  xl:w-[832px] h-[384px] rounded-2xl py-9 px-6 bg-[#FFFFFF] border border-[#CBCBCB]">
           <p class="text-[#000000] text-[17.8px] font-DanaDemibold mb-[56px] mr-6">سبد خرید شما</p>
           <div class="flex">
-            <img src="{% static 'IMG/img shopping/Frame 1261153834.png' %}" alt="">
+            <img src="{{product.prod_obj.image.url}}" alt="">
             <div>
-              <p class="text-[22px] font-DanaDemibold text-[#212121]">گیاه طبیعی یوکا</p>
+              <p class="text-[22px] font-DanaDemibold text-[#212121]">{{product.prod_obj.name}}</p>
               <p class="my-4 font-DanaMedium text-xl">فلاور گاردن</p>
               <div>
                 <span class="inline-block ml-6 text-[#353535] text-base">قیمت:</span>
@@ -41,9 +43,9 @@
               <button class="py-2 px-2 border border-[#CBCBCB] bg-[#FFFFFF] w-[154px] h-[59px] rounded-lg mt-4">
                 <!-- wrapper Icon Shopping -->
                 <div class="flex justify-between items-center">
-                  <img src="{% static 'IMG/img shopping/add.png' %}" alt="Add" class="w-6 h-6 cursor-pointer" onclick="increaseCount()">
-                  <p id="countDisplay" class="text-[19px] text-black cursor-pointer" onclick="increaseCount()">1 تعداد</p>
-                  <img src="{% static 'IMG/img shopping/delete.png' %}" alt="Delete" class="w-6 h-6 cursor-pointer" onclick="decreaseCount()">
+                  <img src="{% static 'IMG/img shopping/add.png' %}" alt="Add" class="w-6 h-6 cursor-pointer" onclick="changeprodquantity(`{{product.product_id}}`,parseInt(`{{product.quantity}}`)+1)">
+                  <p id="countDisplay" class="text-[19px] text-black cursor-pointer">{{product.quantity}} تعداد</p>
+                  <img src="{% static 'IMG/img shopping/delete.png' %}" alt="Delete" class="w-6 h-6 cursor-pointer" onclick="changeprodquantity(`{{product.product_id}}`,parseInt(`{{product.quantity}}`)-1)">
                 </div>
               </button>
             </div>
@@ -73,7 +75,8 @@
             </a>
           </button>
         </div>
-      </div>      
+      </div>     
+      {% endfor %} 
      <!-- Shopping Cart Section -->
       <div class="lg:hidden px-4 mb-10">
       <div class="container mx-auto">
@@ -137,6 +140,30 @@
              </div>
            </div>
        </div>       
-       {% endblock content %}             
-</body>
+       {% endblock content %}
+<script>
+  
+</script>
+{% block js %}
+<script>
+  function changeprodquantity(product_id,quantity) {
+    $.ajax({
+    type: "POST",
+    url: "{% url 'website:add-to-cart' %}",
+    data: {
+      'product_id': product_id,
+      'quantity': quantity,
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    success: function(response){
+      console.log(response)
+      window.location.reload();
+    },
+    error: function(jqXHR,textStatus,errorThrown) {
+      console.log(response)
+  }
+});
+}
+</script>
+{% endblock js %}
 </html>

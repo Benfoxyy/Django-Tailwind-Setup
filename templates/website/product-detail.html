@@ -103,8 +103,8 @@
               <p class="text-xl font-DanaMedium">{{product.price|intcomma}} تومان</p>
             </div>
             <!-- Add to Cart Button -->
-            <button class="w-[264px] h-12 bg-Primary rounded-2xl px-4 mt-8">
-              <a href="" class="text-white text-[18px] tracking-normal">افزودن به سبد خرید</a>
+            <button class="w-[264px] h-12 bg-Primary text-white rounded-2xl px-4 mt-8" onclick="addProd(`{{product.pk}}`)">
+              افزودن به سبد خرید
             </button>
           </div>
         </div>
@@ -340,6 +340,26 @@
   </section>
 </main>
 {% endblock content %}
-<script src="{% static 'scripts/index.js}"></script>
-</body>
+
+{% block js %}
+<script>
+function addProd(product_id) {
+  $.ajax({
+  type: "POST",
+  url: "{% url 'website:add-to-cart' %}",
+  data: {
+    'product_id': product_id,
+    csrfmiddlewaretoken: '{{ csrf_token }}',
+  },
+  success: function(response){
+    console.log(response)
+    $('#count-cart-badge').html(response.total_quantity)
+  },
+  error: function(jqXHR,textStatus,errorThrown) {
+    console.log(response)
+  }
+});
+}
+</script>
+{% endblock js %}
 </html>

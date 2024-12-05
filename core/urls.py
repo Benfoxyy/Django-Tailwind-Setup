@@ -9,6 +9,7 @@ urlpatterns = [
     path("account/", include("account.urls")),
     path("", include("website.urls")),
     path("dashboard/", include("dashboard.urls")),
+    path("cart/", include("cart.urls")),
 ]
 
 
