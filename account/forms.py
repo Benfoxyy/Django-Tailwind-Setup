@@ -3,7 +3,8 @@ from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from .models import User
 
 class AccountLoginForm(AuthenticationForm):
-    pass
+    def confirm_login_allowed(self, user):
+        super(AccountLoginForm,self).confirm_login_allowed(user)
 
 class AccountRegisterForm(UserCreationForm):
     email = forms.EmailField(required=False)

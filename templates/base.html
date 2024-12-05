@@ -12,6 +12,8 @@
         <title>گیاه لند</title>
         <link rel="stylesheet" href="{% static 'styles/app.css' %}">
         <link rel="icon" href="{% static 'IMG/header.png' %}">
+        <!-- CSS Toastify -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     </head>
 <!-- Body -->
 <body class="font-Dana overflow-x-hidden bg-gray-100">      
@@ -172,5 +174,12 @@
       </div>
     </div>
   </footer>
+
+  
+  <!-- JS Toastify -->
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  
+  {% include "messages.html" %}
+  
 </body>
 </html>
