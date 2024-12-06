@@ -19,6 +19,6 @@ class CartAddProductView(View):
         cart = CartSession(request.session)
         if product_id := request.POST.get('product_id'):
             cart.add_prod(product_id)
-        # if request.user.is_authenticated:
-        #     cart.cart_merge(request.user)
+        if request.user.is_authenticated:
+            cart.cart_merge(request.user)
         return JsonResponse({'cart':cart.get_cart(),'total_quantity':cart.get_cart_quantity()})

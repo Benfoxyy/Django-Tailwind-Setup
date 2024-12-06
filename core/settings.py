@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'tailwind',
-    'theme',
+    'tailwind_app',
     'django_browser_reload',
     'account',
     'website',
@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'cart',
 ]
 
-TAILWIND_APP_NAME = 'theme'
+TAILWIND_APP_NAME = 'tailwind_app'
 
 INTERNAL_IPS = [
     "127.0.0.1",
