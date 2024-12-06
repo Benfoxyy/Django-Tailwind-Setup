@@ -23,11 +23,11 @@ class CartSession:
     def add_prod(self, product_id,quantity=None):
         for item in self.cart['items']:
             if product_id == item['product_id']:
-                if not quantity:
+                if quantity == None:
                     item.update({'quantity': int(item['quantity'])+1})
                 else:
                     item['quantity'] = quantity
-                    if quantity == 0:
+                    if quantity == '0':
                         self.del_prod(product_id)
                 break
         else:
@@ -39,7 +39,6 @@ class CartSession:
         self.save()
 
     def del_prod(self,product_id):
-        print('hello1')
         for item in self.cart['items']:
             if item['product_id'] == product_id:
                 self.cart['items'].remove(item)
@@ -48,6 +47,12 @@ class CartSession:
 
     def get_cart_quantity(self):
         return sum(int(item['quantity']) for item in self.cart['items'])
+    
+    def get_total_price(self):
+        items = self.get_cart_items()
+        for item in items:
+            self.cart['total_price'] +=(item['prod_obj'].price) * int(item['quantity'])
+        return self.cart['total_price']
 
 
     def save(self):
