@@ -24,9 +24,11 @@ class CartSession:
         for item in self.cart['items']:
             if product_id == item['product_id']:
                 if not quantity:
-                    item['quantity'] += 1
+                    item.update({'quantity': int(item['quantity'])+1})
                 else:
                     item['quantity'] = quantity
+                    if quantity == 0:
+                        self.del_prod(product_id)
                 break
         else:
             new_prod = {
@@ -34,6 +36,14 @@ class CartSession:
                 'quantity': 1,
             }
             self.cart['items'].append(new_prod)
+        self.save()
+
+    def del_prod(self,product_id):
+        print('hello1')
+        for item in self.cart['items']:
+            if item['product_id'] == product_id:
+                self.cart['items'].remove(item)
+                break
         self.save()
 
     def get_cart_quantity(self):
