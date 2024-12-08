@@ -49,10 +49,12 @@ class CartSession:
     def get_cart_quantity(self):
         return sum(int(item['quantity']) for item in self.cart['items'])
     
-    def get_total_price(self):
+    def get_total_price(self,coupon=None):
         items = self.get_cart_items()
         for item in items:
             self.cart['total_price'] +=(item['prod_obj'].price) * int(item['quantity'])
+        if coupon:
+            self.cart['total_price'] = self.cart['total_price'] - ((self.cart['total_price'] / 100) * coupon)
         return self.cart['total_price']
 
     def cart_sync(self,user):
