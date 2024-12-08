@@ -1,0 +1,25 @@
+<!-- 
+==========================
+* Developer * : Amir Mohammad Sharafi Nik
+========================== 
+-->
+
+{% extends "base.html" %}
+{% load static %}
+{% load static tailwind_tags %}
+
+{% block content %}
+      <hr>      
+       <!-- Main -->
+      <main>  
+        <section>
+          <div class="container">
+            <h1 class="text-center mt-10 text-[#212121] text-xl md:text-3xl font-DanaDemibold">سبد خرید شما خالی میباشد</h1>
+            <div class="flex justify-center items-center mt-12">
+              <img src="{% static 'IMG/img shopping/find.png' %}" alt="">
+            </div>
+          </div>
+        </section>
+      </main>
+      {% endblock content %}
+</html>

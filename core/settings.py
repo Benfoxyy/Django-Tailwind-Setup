@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'tailwind',
-    'tailwind_app',
+    'theme',
     'django_browser_reload',
     'account',
     'website',
@@ -35,16 +35,16 @@ INSTALLED_APPS = [
     'cart',
 ]
 
-TAILWIND_APP_NAME = 'tailwind_app'
+TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
 # for windows
-# NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
+NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
 
 # for linux
-NPM_BIN_PATH = "/usr/bin/npm"
+# NPM_BIN_PATH = "/usr/bin/npm"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

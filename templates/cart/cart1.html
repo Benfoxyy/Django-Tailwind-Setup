@@ -10,50 +10,51 @@
 {% load humanize %}
 
 {% block content %}
+  
 
-      <hr>
+      <hr>     
       <!-- Product Section Shopping  -->
+
       <div class="hidden lg:grid  grid-cols-12 lg:gap-5    mt-[141px]  mr-[108px] ">
         <!-- right product -->
         {% for product in cartlist %}
-          <div class="col-span-12 lg:col-span-8 w-[615px]  xl:w-[832px] h-auto rounded-2xl py-9 px-6 bg-[#FFFFFF] border border-[#CBCBCB]">
-            <p class="text-[#000000] text-[17.8px] font-DanaDemibold mb-[56px] mr-6">سبد خرید شما</p>
-            <div class="flex">
-              <img src="{{product.prod_obj.image.url}}" alt="">
+        <div class="col-span-12 lg:col-span-8 w-[615px]  xl:w-[832px] h-[384px] rounded-2xl py-9 px-6 bg-[#FFFFFF] border border-[#CBCBCB]">
+          <p class="text-[#000000] text-[17.8px] font-DanaDemibold mb-[56px] mr-6">سبد خرید شما</p>
+          <div class="flex">
+            <img src="{{product.prod_obj.image.url}}" alt="">
+            <div>
+              <p class="text-[22px] font-DanaDemibold text-[#212121]">{{product.prod_obj.name}}</p>
+              <p class="my-4 font-DanaMedium text-xl">فلاور گاردن</p>
               <div>
-                <p class="text-[22px] font-DanaDemibold text-[#212121]">{{product.prod_obj.name}}</p>
-                <p class="my-4 font-DanaMedium text-xl">فلاور گاردن</p>
-                <div>
-                  <span class="inline-block ml-6 text-[#353535] text-base">قیمت:</span>
-                  <span class="inline-block lg:text-xl  text-[#121212]  ">{{product.prod_obj.price|intcomma}} تومان</span>
-                </div>
-                <!-- button shooping -->
-                <button class="py-2 px-2 border border-[#CBCBCB] bg-[#FFFFFF] w-[154px] h-[59px] rounded-lg mt-4">
-                  <!-- wrapper Icon Shopping -->
-                  <div class="flex justify-between items-center">
-                    <img src="{% static 'IMG/img shopping/add.png' %}" alt="Add" class="w-6 h-6 cursor-pointer" onclick="changeprodquantity(`{{product.product_id}}`,parseInt(`{{product.quantity}}`)+1)">
-                    <p id="countDisplay" class="text-[19px] text-black cursor-pointer">{{product.quantity}} تعداد</p>
-                    <img src="{% static 'IMG/img shopping/minus-icon.png' %}" alt="Delete" class="w-6 h-6 cursor-pointer" onclick="changeprodquantity(`{{product.product_id}}`,parseInt(`{{product.quantity}}`)-1)">
-                  </div>
-                </button>
+                <span class="inline-block ml-6 text-[#353535] text-base">قیمت:</span>
+                <span class="inline-block lg:text-xl  text-[#121212]  ">{{product.prod_obj.price|intcomma}} تومان</span>
               </div>
+              <!-- button shooping -->
+              <button class="py-2 px-2 border border-[#CBCBCB] bg-[#FFFFFF] w-[154px] h-[59px] rounded-lg mt-4">
+                <!-- wrapper Icon Shopping -->
+                <div class="flex justify-between items-center">
+                  <img src="{% static 'IMG/img shopping/add.png' %}" alt="Add" class="w-6 h-6 cursor-pointer" onclick="changeprodquantity(`{{product.product_id}}`,parseInt(`{{product.quantity}}`)+1)">
+                  <p id="countDisplay" class="text-[19px] text-black cursor-pointer">{{product.quantity}} تعداد</p>
+                  <img src="{% static 'IMG/img shopping/delete.png' %}" alt="Delete" class="w-6 h-6 cursor-pointer" onclick="changeprodquantity(`{{product.product_id}}`,parseInt(`{{product.quantity}}`)-1)">
+                </div>
+              </button>
             </div>
-
           </div>
-        {% endfor %}
+        </div>
+        {% endfor %} 
         <!-- left div -->
         <div class="col-span-12  xl:mr-0 lg:col-span-4 w-full lg:w-[312px] h-[384px] rounded-2xl py-7 px-6 bg-[#FFFFFF] border border-[#CBCBCB] space-y-6">
           <div class="flex justify-between">
             <span class="inline-block text-base font-DanaMedium">تعداد گیاه:</span>
-            <span class="inline-block text-xl text-[#121212] font-DanaDemibold" >1</span>
+            <span class="inline-block text-xl text-[#121212] font-DanaDemibold" >{{total_quantity}} عدد</span>
           </div>
           <div class="flex justify-between ">
             <span class="inline-block text-base font-DanaMedium">مجموع سبد خرید: </span>
-            <span class="inline-block text-xl text-[#121212] font-DanaDemibold"  >۵۶۰/۰۰۰ تومان</span>
+            <span class="inline-block text-xl text-[#121212] font-DanaDemibold">{{total_price|intcomma}} تومان</span>
           </div>
           <div class="flex justify-between">
             <span class="inline-block text-base font-DanaMedium">ارسال توسط:</span>
-            <span class="inline-block text-xl text-[#121212] font-DanaDemibold"   >گیاه لند</span>
+            <span class="inline-block text-xl text-[#121212] font-DanaDemibold">گیاه لند</span>
           </div>
           <input class="w-[264px] h-16 bg-[#EFEFEF] py-2 px-2 mx-auto rounded-xl  text-[#121212] font-DanaDemibold"
           placeholder="کد تخفیف:کد تخفیف را وارد کنید"
@@ -65,9 +66,9 @@
             </a>
           </button>
         </div>
-      </div>      
+      </div>     
      <!-- Shopping Cart Section -->
-     {% for product in cartlist %}
+      {% for product in cartlist %}
       <div class="lg:hidden px-4 mb-10">
       <div class="container mx-auto">
         <p class="mr-4 mt-16 mb-8 text-lg md:text-2xl font-DanaBold">سبد خرید شما</p>
@@ -91,13 +92,13 @@
             <button class="flex items-center justify-between gap-2 py-2 px-3 mt-4 border border-gray-300 rounded-lg bg-white w-36 md:w-40 h-12">
               <img src="{% static 'IMG/img shopping/add.png' %}" alt="افزایش تعداد" onclick="changeprodquantity(`{{product.product_id}}`,parseInt(`{{product.quantity}}`)+1)">
               <p class="text-sm md:text-base text-black">{{product.quantity}} تعداد</p>
-              <img src="{% static 'IMG/img shopping/minus-icon.png' %}" alt="کاهش تعداد" onclick="changeprodquantity(`{{product.product_id}}`,parseInt(`{{product.quantity}}`)-1)">
+              <img src="{% static 'IMG/img shopping/delete.png' %}" alt="کاهش تعداد" onclick="changeprodquantity(`{{product.product_id}}`,parseInt(`{{product.quantity}}`)-1)">
             </button>
           </div>
         </div>
       </div>
-      </div>      
-      {% endfor %}
+      </div> 
+      {% endfor %}     
        <!-- spcace Hr -->
        <hr>
        <div class="mt-10 lg:hidden"> 
@@ -118,11 +119,12 @@
            <!-- btn  -->
              <div class="space-y-4">
               <!-- btn for by  -->
-              <input type="text"
-              class="w-full h-10 bg-[#EFEFEF] py-2 px-2 rounded-xl text-[#121212] font-DanaDemibold"
-              placeholder="کد تخفیف را وارد کنید"
-
-              >
+               <button class="w-full h-10 bg-[#EFEFEF] py-2 px-2 rounded-xl">
+                 <div class="flex gap-x-2 pr-2">
+                   <p class="text-[#121212] text-base font-DanaDemibold">کد تخفیف:</p>
+                   <p class="text-[#909090] font-[14px] font-DanaMedium">کد تخفیف را وارد کنید</p>
+                 </div>
+               </button>
                <!-- btn for Self  -->
                <button class="w-full h-10 bg-Primary py-2 px-2 rounded-xl">
                  <p class="text-white text-[14px] text-center font-DanaDemibold">سفارش و خرید</p>
@@ -131,26 +133,26 @@
            </div>
        </div>       
        {% endblock content %}
-       {% block js %}
-       <script>
-         function changeprodquantity(product_id,quantity) {
-           $.ajax({
-           type: "POST",
-           url: "{% url 'website:add-to-cart' %}",
-           data: {
-             'product_id': product_id,
-             'quantity': quantity,
-             csrfmiddlewaretoken: '{{ csrf_token }}',
-           },
-           success: function(response){
-             console.log(response)
-             window.location.reload();
-           },
-           error: function(jqXHR,textStatus,errorThrown) {
-             console.log(response)
-         }
-       });
-       }
-       </script>
-       {% endblock js %}                        
+{% block js %}
+<script>
+  function changeprodquantity(product_id,quantity) {
+    $.ajax({
+    type: "POST",
+    url: "{% url 'website:add-to-cart' %}",
+    data: {
+      'product_id': product_id,
+      'quantity': quantity,
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+    },
+    success: function(response){
+      console.log(response)
+      window.location.reload();
+    },
+    error: function(jqXHR,textStatus,errorThrown) {
+      console.log(response)
+  }
+});
+}
+</script>
+{% endblock js %}
 </html>
