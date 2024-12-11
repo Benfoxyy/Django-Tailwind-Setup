@@ -1,5 +1,5 @@
 from django import forms
-from order.models import CouponModel
+from payment.models import CouponModel
 
 class CartListForm(forms.Form):
     coupon_code = forms.CharField(required=False)

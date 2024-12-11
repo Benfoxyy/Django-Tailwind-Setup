@@ -346,7 +346,7 @@
 function addProd(product_id) {
   $.ajax({
   type: "POST",
-  url: "{% url 'website:add-to-cart' %}",
+  url: "/cart/" + product_id + "/add/",
   data: {
     'product_id': product_id,
     csrfmiddlewaretoken: '{{ csrf_token }}',

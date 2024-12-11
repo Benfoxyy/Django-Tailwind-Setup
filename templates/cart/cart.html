@@ -49,21 +49,31 @@
           </div>
           <div class="flex justify-between ">
             <span class="inline-block text-base font-DanaMedium">مجموع سبد خرید: </span>
-            <span class="inline-block text-xl text-[#121212] font-DanaDemibold">{{total_price|intcomma}} تومان</span>
+            <span id="total-price" class="inline-block text-xl text-[#121212] font-DanaDemibold">{{total_price|intcomma}} تومان</span>
+          </div>
+          <div class="flex justify-between ">
+            <span id="offer-title" class="inline-block text-base font-DanaMedium"></span>
+            <span id="total-offer-price" class="inline-block text-xl text-[#121212] font-DanaDemibold"></span>
           </div>
           <div class="flex justify-between">
             <span class="inline-block text-base font-DanaMedium">ارسال توسط:</span>
             <span class="inline-block text-xl text-[#121212] font-DanaDemibold">گیاه لند</span>
           </div>
-        <form id="coupon-form" action="{% url 'cart:cart-list' %}" method="post">
-          {% csrf_token %}
-          <input name="coupon_code" class="w-[264px] h-16 bg-[#EFEFEF] py-2 px-2 mx-auto rounded-xl  text-[#121212] font-DanaDemibold"
-          placeholder="کد تخفیف:کد تخفیف را وارد کنید">
-          </input>
-        </form>
-          <button form="coupon-form" class="w-[264px] h-16 bg-Primary text-[19px] text-white py-2 px-2 mx-auto rounded-xl" type="submit">
-            سفارش و خرید
-          </button>
+        
+          <div class="flex gap-x-2 items-center">
+            <input form="coupon-form" id="coupon-check" name="coupon_code" class="w-[264px] h-16 bg-[#EFEFEF] py-2 px-2 mx-auto rounded-xl  text-[#121212] font-DanaDemibold"
+            placeholder="کد تخفیف را وارد کنید">
+            <button class="w-full  h-16 bg-Primary rounded-md" type="submit" onclick="validateCoupon()">
+              <p class="text-center text-xs text-white font-DanaDemibold  hover:text-black  transition-colors ">بررسی</p>
+            </button>    
+          </div>
+          </input> 
+          <form id="coupon-form" action="{% url 'cart:cart-list' %}" method="post">
+            {% csrf_token %}
+            <button class="w-[264px] h-16 bg-Primary text-[19px] text-white py-2 px-2 mx-auto rounded-xl" type="submit">
+              سفارش و خرید
+            </button>
+          </form>
         </div>
       </div>      
      <!-- Shopping Cart Section -->
@@ -136,7 +146,7 @@
          function changeprodquantity(product_id,quantity) {
            $.ajax({
            type: "POST",
-           url: "{% url 'website:add-to-cart' %}",
+           url: "/cart/" + product_id + "/add/",
            data: {
              'product_id': product_id,
              'quantity': quantity,
@@ -152,5 +162,39 @@
        });
        }
        </script>
+<script>
+
+function replaceTag(discountedPrice) {
+    $('#offer-title').text('قیمت کل: ');
+    $('#total-offer-price').text(discountedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' تومان'); // Example value
+}
+
+
+function validateCoupon() {
+  $.ajax({
+  type: "POST",
+  url: "{% url 'cart:check' %}",
+  data: {
+    'coupon_code': $('#coupon-check').val(),
+    csrfmiddlewaretoken: '{{ csrf_token }}',
+  },
+  success: function(response){
+    Toastify({
+              text:response.message,
+              className: `info`,
+              style: {
+                background: "light-blue",
+              }
+            }).showToast();
+            replaceTag(response.discounted_price);
+  },
+  error: function(jqXHR,textStatus,errorThrown) {
+    console.log(response)
+  }
+});
+}
+</script>
+
+
        {% endblock js %}                        
 </html>

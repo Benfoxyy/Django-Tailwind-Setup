@@ -18,14 +18,4 @@ class WebsiteHomeView(ListView):
 class ProductDetailVeiw(DetailView):
     template_name = 'website/product-detail.html'
     queryset = ProductModel.objects.all()
-    context_object_name = 'product'
-
-
-class AddToCart(View):
-    def post(self, request, *args, **kwargs):
-        cart = CartSession(request.session)
-        product_id = request.POST.get('product_id')
-        # quantity = request.POST.get('quantity')
-        if product_id:
-            cart.add_prod(product_id,request.POST.get('quantity'))
-        return JsonResponse({'cart':cart.get_cart(),'total_quantity':cart.get_cart_quantity()})   
+    context_object_name = 'product' 

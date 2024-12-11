@@ -2,14 +2,15 @@ from django.views.generic import FormView,View
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from .cart import CartSession
+from .models import CartModel
 from .forms import CartListForm
+from payment.models import *
 
 class CartListView(FormView):
     template_name = 'cart/cart.html'
-    success_url = reverse_lazy('order:complete')
+    success_url = reverse_lazy('payment:complete')
 
     form_class = CartListForm
-    # success_url = reverse_lazy('order:complete')
     def get_form_kwargs(self):
         kwargs = super(CartListView,self).get_form_kwargs()
         kwargs['request'] = self.request
@@ -47,8 +48,34 @@ class CartListView(FormView):
 class CartAddProductView(View):
     def post(self, request, *args, **kwargs):
         cart = CartSession(request.session)
-        if product_id := request.POST.get('product_id'):
-            cart.add_prod(product_id)
+        product_id = request.POST.get('product_id')
+        if product_id:
+            cart.add_prod(product_id,request.POST.get('quantity'))
         if request.user.is_authenticated:
             cart.cart_merge(request.user)
         return JsonResponse({'cart':cart.get_cart(),'total_quantity':cart.get_cart_quantity()})
+    
+
+
+class CheckView(View):
+    def post(self, request, *args, **kwargs):
+        coupon_code = request.POST.get('coupon_code')
+        message = 'کد تخفیف با موفقیت ثبت شد'
+        try:
+            coupon = CouponModel.objects.get(code=coupon_code)
+        except CouponModel.DoesNotExist:
+            return JsonResponse({'message':'کد تخفیف یافت نشد'})
+        
+        else:
+            if self.request.user in coupon.used_by.all():
+                message = 'این کد توسط شما یک بار استفاده شده است'
+            if coupon.max_limit_usage == 0 :
+                message = 'کد دیگر فاقد ارزش است'
+            else:
+                cart = CartModel.objects.get(user=self.request.user)
+                
+                total_price = cart.calculate_total_price()
+                
+                discounted_price = total_price - (total_price/100 * coupon.discount_percent)
+
+        return JsonResponse({'discounted_price':discounted_price,'message':message}) 

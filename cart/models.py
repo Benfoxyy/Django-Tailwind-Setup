@@ -9,8 +9,8 @@ class CartModel(models.Model):
     def __str__(self):
         return self.user.email
     
-    # def calculate_total_price(self):
-    #     return sum(prod.product.offer() * prod.quantity for prod in self.cart_items.all())
+    def calculate_total_price(self):
+        return sum(prod.product.price * prod.quantity for prod in self.cart_items.all())
         
     
 class CartItemModel(models.Model):
