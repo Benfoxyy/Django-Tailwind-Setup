@@ -51,13 +51,9 @@
             <span class="inline-block text-base font-DanaMedium">مجموع سبد خرید: </span>
             <span id="total-price" class="inline-block text-xl text-[#121212] font-DanaDemibold">{{total_price|intcomma}} تومان</span>
           </div>
-          <div class="flex justify-between ">
-            <span id="offer-title" class="inline-block text-base font-DanaMedium"></span>
-            <span id="total-offer-price" class="inline-block text-xl text-[#121212] font-DanaDemibold"></span>
-          </div>
           <div class="flex justify-between">
-            <span class="inline-block text-base font-DanaMedium">ارسال توسط:</span>
-            <span class="inline-block text-xl text-[#121212] font-DanaDemibold">گیاه لند</span>
+            <span class="inline-block text-base font-DanaMedium">قیمت با تخفیف: </span>
+            <span id="total-offer-price" class="inline-block text-xl text-[#121212] font-DanaDemibold"></span>
           </div>
         
           <div class="flex gap-x-2 items-center">
@@ -165,10 +161,8 @@
 <script>
 
 function replaceTag(discountedPrice) {
-    $('#offer-title').text('قیمت کل: ');
     $('#total-offer-price').text(discountedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' تومان'); // Example value
 }
-
 
 function validateCoupon() {
   $.ajax({
@@ -183,13 +177,19 @@ function validateCoupon() {
               text:response.message,
               className: `info`,
               style: {
-                background: "light-blue",
+                background: "#FF9800",
               }
             }).showToast();
             replaceTag(response.discounted_price);
   },
   error: function(jqXHR,textStatus,errorThrown) {
-    console.log(response)
+    Toastify({
+              text:response,
+              className: `error`,
+              style: {
+                background: "#F44336",
+              }
+            }).showToast();
   }
 });
 }

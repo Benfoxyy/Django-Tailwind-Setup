@@ -17,10 +17,34 @@ class CartListView(FormView):
         return kwargs
     
     def form_valid(self, form):
+        user = self.request.user
         coupon = form.cleaned_data['coupon_code']
         total_price = self.calculate_price(coupon)
-        print(total_price)
+        order = self.create_order(user,total_price)
+        if coupon:
+            self.add_coupon(user,order,coupon)
+        self.add_product(order,user)
         return super().form_valid(form)
+    
+
+    def create_order(self,user,total_price):
+        return OrderModel.objects.create(user=user,
+                                         final_price=total_price)
+    
+    def add_coupon(self,user,order,coupon):
+        order.coupon = coupon
+        coupon.max_limit_usage -= 1
+        coupon.used_by.add(user)
+        coupon.save()
+        order.save()
+
+    def add_product(self,order,user):
+        cart_items = CartModel.objects.get(user=user).cart_items.all()
+        for product in cart_items:
+            OrderItemsModel.objects.create(order=order,
+                                           product=product.product,
+                                           quantity=product.quantity,
+                                           price=product.get_productprice())
 
 
     def get_template_names(self):
@@ -60,17 +84,15 @@ class CartAddProductView(View):
 class CheckView(View):
     def post(self, request, *args, **kwargs):
         coupon_code = request.POST.get('coupon_code')
-        message = 'کد تخفیف با موفقیت ثبت شد'
         try:
             coupon = CouponModel.objects.get(code=coupon_code)
         except CouponModel.DoesNotExist:
             return JsonResponse({'message':'کد تخفیف یافت نشد'})
-        
         else:
             if self.request.user in coupon.used_by.all():
-                message = 'این کد توسط شما یک بار استفاده شده است'
+                return JsonResponse({'message':'این کد توسط شما یک بار استفاده شده است'})
             if coupon.max_limit_usage == 0 :
-                message = 'کد دیگر فاقد ارزش است'
+                return JsonResponse({'message':'کد دیگر فاقد ارزش است'})
             else:
                 cart = CartModel.objects.get(user=self.request.user)
                 
@@ -78,4 +100,4 @@ class CheckView(View):
                 
                 discounted_price = total_price - (total_price/100 * coupon.discount_percent)
 
-        return JsonResponse({'discounted_price':discounted_price,'message':message}) 
+        return JsonResponse({'discounted_price':discounted_price,'message':'کد تخفیف با موفقیت ثبت شد'}) 

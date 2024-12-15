@@ -21,7 +21,7 @@
               <script>
                 Toastify({
                     text: `{{ error|escape }}`,
-                    className: `error`,
+                    className: `{{ message.tags }}`,
                     style: {
                       background: "#FF9800",
                     }
@@ -35,7 +35,7 @@
         <script>
             Toastify({
                 text: `{{ form.non_field_errors.as_text }}`,
-                className: `error`,
+                className: `{{ message.tags }}`,
                 style: {
                   background: "#F44336",
                 }

@@ -23,3 +23,6 @@ class CartItemModel(models.Model):
     
     def __str__(self):
         return f"{self.product.name} - {self.cart.id}"
+    
+    def get_productprice(self):
+        return self.product.price * self.quantity
