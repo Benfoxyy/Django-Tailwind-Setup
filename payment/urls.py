@@ -5,4 +5,5 @@ app_name = 'payment'
 
 urlpatterns = [
     path('complete/',views.PaymentCompleteView.as_view(),name='complete'),
+    path('verify',views.VerificationView.as_view(),name='cart-summery'),
 ]

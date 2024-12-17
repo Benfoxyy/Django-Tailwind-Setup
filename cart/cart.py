@@ -85,5 +85,15 @@ class CartSession:
         session_product_ids = [item['product_id'] for item in self.cart['items']]
         CartItemModel.objects.filter(cart=cart_model).exclude(product__id__in=session_product_ids).delete()
 
+    def clear(self):
+        self.cart.update({
+            'items': [],
+            'total_price': 0,
+            'total_items': 0,
+        })
+        
+        self.save()
+        
+
     def save(self):
         self.session.modified = True

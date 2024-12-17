@@ -5,7 +5,7 @@ from account.models import Profile
 
 class DashboardProfileView(SuccessMessageMixin,UpdateView):
     template_name = 'dashboard/profile.html'
-    success_message = 'مشخصات با موفقیت تغییر کرد'
+    # success_message = 'مشخصات با موفقیت تغییر کرد'
     model = Profile
     fields = [
         'first_name',

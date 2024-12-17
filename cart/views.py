@@ -1,14 +1,15 @@
 from django.views.generic import FormView,View
 from django.http import JsonResponse
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 from .cart import CartSession
 from .models import CartModel
 from .forms import CartListForm
 from payment.models import *
+from payment.zarinpal_client import ZarinPalSandbox
 
 class CartListView(FormView):
     template_name = 'cart/cart.html'
-    success_url = reverse_lazy('payment:complete')
 
     form_class = CartListForm
     def get_form_kwargs(self):
@@ -17,6 +18,7 @@ class CartListView(FormView):
         return kwargs
     
     def form_valid(self, form):
+        cart = CartSession(self.request.session)
         user = self.request.user
         coupon = form.cleaned_data['coupon_code']
         total_price = self.calculate_price(coupon)
@@ -24,7 +26,11 @@ class CartListView(FormView):
         if coupon:
             self.add_coupon(user,order,coupon)
         self.add_product(order,user)
-        return super().form_valid(form)
+        cart.clear()
+        cart.cart_merge(user)
+        order.save()
+        
+        return redirect(self.payment_method_url(order))
     
 
     def create_order(self,user,total_price):
@@ -36,7 +42,6 @@ class CartListView(FormView):
         coupon.max_limit_usage -= 1
         coupon.used_by.add(user)
         coupon.save()
-        order.save()
 
     def add_product(self,order,user):
         cart_items = CartModel.objects.get(user=user).cart_items.all()
@@ -45,6 +50,17 @@ class CartListView(FormView):
                                            product=product.product,
                                            quantity=product.quantity,
                                            price=product.get_productprice())
+
+
+    def payment_method_url(self,order):
+        zarinpal = ZarinPalSandbox()
+        response = zarinpal.payment_request(order.final_price)
+        payment_obj = PaymentModel.objects.create(
+            authority = response['data']['authority'],
+            amount = order.final_price,
+            order = order
+        )
+        return zarinpal.generate_payment_url(response['data']['authority'])
 
 
     def get_template_names(self):

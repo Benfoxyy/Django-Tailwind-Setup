@@ -15,10 +15,10 @@
       <!-- Product Section Shopping  -->
       <div class="hidden lg:grid  grid-cols-12 lg:gap-5    mt-[141px]  mr-[108px] ">
         <!-- right product -->
-        {% for product in cartlist %}
-          <div class="col-span-12 lg:col-span-8 w-[615px]  xl:w-[832px] h-auto rounded-2xl py-9 px-6 bg-[#FFFFFF] border border-[#CBCBCB]">
-            <p class="text-[#000000] text-[17.8px] font-DanaDemibold mb-[56px] mr-6">سبد خرید شما</p>
-            <div class="flex">
+        <div class="col-span-12 lg:col-span-8 w-[615px]  xl:w-[832px] h-auto rounded-2xl py-9 px-6 bg-[#FFFFFF] border border-[#CBCBCB]">
+          <p class="text-[#000000] text-[17.8px] font-DanaDemibold mb-[56px] mr-6">سبد خرید شما</p>
+          {% for product in cartlist %}
+            <div class="flex mt-10">
               <img src="{{product.prod_obj.image.url}}" alt="">
               <div>
                 <p class="text-[22px] font-DanaDemibold text-[#212121]">{{product.prod_obj.name}}</p>
@@ -38,9 +38,13 @@
                 </button>
               </div>
             </div>
+            {% if not forloop.last %}
+            <div class="border border-[#737993]">
+            </div>
+            {% endif %}
+            {% endfor %}
 
           </div>
-        {% endfor %}
         <!-- left div -->
         <div class="col-span-12  xl:mr-0 lg:col-span-4 w-full lg:w-[312px] h-[384px] rounded-2xl py-7 px-6 bg-[#FFFFFF] border border-[#CBCBCB] space-y-6">
           <div class="flex justify-between">
@@ -53,18 +57,18 @@
           </div>
           <div class="flex justify-between">
             <span class="inline-block text-base font-DanaMedium">قیمت با تخفیف: </span>
-            <span id="total-offer-price" class="inline-block text-xl text-[#121212] font-DanaDemibold"></span>
+            <span class="inline-block text-xl text-[#121212] font-DanaDemibold total-offer-price"></span>
           </div>
         
           <div class="flex gap-x-2 items-center">
-            <input form="coupon-form" id="coupon-check" name="coupon_code" class="w-[264px] h-16 bg-[#EFEFEF] py-2 px-2 mx-auto rounded-xl  text-[#121212] font-DanaDemibold"
+            <input id="coupon-check1" form="coupon-form-1" name="coupon_code" class="w-[264px] h-16 bg-[#EFEFEF] py-2 px-2 mx-auto rounded-xl  text-[#121212] font-DanaDemibold"
             placeholder="کد تخفیف را وارد کنید">
-            <button class="w-full  h-16 bg-Primary rounded-md" type="submit" onclick="validateCoupon()">
+            <button class="w-full  h-16 bg-Primary rounded-md" type="submit" onclick="validateCoupon1()">
               <p class="text-center text-xs text-white font-DanaDemibold  hover:text-black  transition-colors ">بررسی</p>
             </button>    
           </div>
           </input> 
-          <form id="coupon-form" action="{% url 'cart:cart-list' %}" method="post">
+          <form id="coupon-form-1" action="{% url 'cart:cart-list' %}" method="post">
             {% csrf_token %}
             <button class="w-[264px] h-16 bg-Primary text-[19px] text-white py-2 px-2 mx-auto rounded-xl" type="submit">
               سفارش و خرید
@@ -73,11 +77,11 @@
         </div>
       </div>      
      <!-- Shopping Cart Section -->
-     {% for product in cartlist %}
-      <div class="lg:hidden px-4 mb-10">
-      <div class="container mx-auto">
-        <p class="mr-4 mt-16 mb-8 text-lg md:text-2xl font-DanaBold">سبد خرید شما</p>
-    
+     <div class="lg:hidden px-4 mb-10">
+       <div class="container mx-auto">
+         <p class="mr-4 mt-16 mb-8 text-lg md:text-2xl font-DanaBold">سبد خرید شما</p>
+         
+         {% for product in cartlist %}
         <!--  prodvut  -->
         <div class="flex gap-4 items-center">
           <!-- Img Pruduct -->
@@ -96,14 +100,14 @@
             <!--  Button Section -->
             <button class="flex items-center justify-between gap-2 py-2 px-3 mt-4 border border-gray-300 rounded-lg bg-white w-36 md:w-40 h-12">
               <img src="{% static 'IMG/img shopping/add.png' %}" alt="افزایش تعداد" onclick="changeprodquantity(`{{product.product_id}}`,parseInt(`{{product.quantity}}`)+1)">
-              <p class="text-sm md:text-base text-black">{{product.quantity}} تعداد</p>
+              <p id="countDisplay" class="text-sm md:text-base text-black">{{product.quantity}} تعداد</p>
               <img src="{% static 'IMG/img shopping/minus-icon.png' %}" alt="کاهش تعداد" onclick="changeprodquantity(`{{product.product_id}}`,parseInt(`{{product.quantity}}`)-1)">
             </button>
           </div>
         </div>
+        {% endfor %}
       </div>
       </div>      
-      {% endfor %}
        <!-- spcace Hr -->
        <hr>
        <div class="mt-10 lg:hidden"> 
@@ -111,28 +115,33 @@
              <!--  Details  -->
              <div class="flex justify-between">
                <span class="inline-block text-base font-DanaMedium">تعداد گیاه:</span>
-               <span class="inline-block text-base md:text-xl text-[#121212] font-DanaDemibold">1</span>
+               <span class="inline-block text-base md:text-xl text-[#121212] font-DanaDemibold">{{total_quantity}} عدد</span>
              </div>
              <div class="flex justify-between">
                <span class="inline-block text-base font-DanaMedium">مجموع سبد خرید:</span>
-               <span class="inline-block text-base md:text-xl text-[#121212] font-DanaDemibold">۵۶۰/۰۰۰ تومان</span>
+               <span class="inline-block text-base md:text-xl text-[#121212] font-DanaDemibold">{{total_price|intcomma}} تومان</span>
              </div>
              <div class="flex justify-between">
-               <span class="inline-block text-base font-DanaMedium">ارسال توسط:</span>
-               <span class="inline-block text-base md:text-xl text-[#121212] font-DanaDemibold">گیاه لند</span>
+               <span class="inline-block text-base font-DanaMedium">قیمت با تخفیف: </span>
+               <span class="inline-block text-base md:text-xl text-[#121212] font-DanaDemibold total-offer-price"></span>
              </div>   
            <!-- btn  -->
-             <div class="space-y-4">
-              <!-- btn for by  -->
-              <input type="text"
-              class="w-full h-10 bg-[#EFEFEF] py-2 px-2 rounded-xl text-[#121212] font-DanaDemibold"
-              placeholder="کد تخفیف را وارد کنید"
-
-              >
+           <div class="space-y-4">
+            <!-- btn for by  -->
+            <div class="flex gap-x-2 items-center">
+              <input id="coupon-check2" form="coupon-form-2" name="coupon_code" class="w-full h-10 bg-[#EFEFEF] py-2 px-2 rounded-xl text-[#121212] font-DanaDemibold"
+              placeholder="کد تخفیف را وارد کنید">
+                <button class="w-12 h-10 rounded-md bg-Primary" type="submit" onclick="validateCoupon2()">
+                  <p class="text-center text-white hover:text-black transition-colors text-xs">بررسی</p>
+                </button>
+            </div>
                <!-- btn for Self  -->
-               <button class="w-full h-10 bg-Primary py-2 px-2 rounded-xl">
+               <form id="coupon-form-2" action="{% url 'cart:cart-list' %}" method="post">
+                {% csrf_token %}
+               <button class="w-full h-10 bg-Primary py-2 px-2 rounded-xl" type="submit">
                  <p class="text-white text-[14px] text-center font-DanaDemibold">سفارش و خرید</p>
                </button>
+              </form>
              </div>
            </div>
        </div>       
@@ -161,15 +170,15 @@
 <script>
 
 function replaceTag(discountedPrice) {
-    $('#total-offer-price').text(discountedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' تومان'); // Example value
+    $('.total-offer-price').text(discountedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' تومان'); // Example value
 }
 
-function validateCoupon() {
+function validateCoupon1() {
   $.ajax({
   type: "POST",
   url: "{% url 'cart:check' %}",
   data: {
-    'coupon_code': $('#coupon-check').val(),
+    'coupon_code': $('#coupon-check1').val(),
     csrfmiddlewaretoken: '{{ csrf_token }}',
   },
   success: function(response){
@@ -180,6 +189,38 @@ function validateCoupon() {
                 background: "#FF9800",
               }
             }).showToast();
+           
+            replaceTag(response.discounted_price);
+  },
+  error: function(jqXHR,textStatus,errorThrown) {
+    Toastify({
+              text:response,
+              className: `error`,
+              style: {
+                background: "#F44336",
+              }
+            }).showToast();
+  }
+});
+}
+
+function validateCoupon2() {
+  $.ajax({
+  type: "POST",
+  url: "{% url 'cart:check' %}",
+  data: {
+    'coupon_code': $('#coupon-check2').val(),
+    csrfmiddlewaretoken: '{{ csrf_token }}',
+  },
+  success: function(response){
+    Toastify({
+              text:response.message,
+              className: `info`,
+              style: {
+                background: "#FF9800",
+              }
+            }).showToast();
+           
             replaceTag(response.discounted_price);
   },
   error: function(jqXHR,textStatus,errorThrown) {
