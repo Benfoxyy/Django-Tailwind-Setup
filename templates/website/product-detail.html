@@ -282,9 +282,11 @@
             <hr>
             <div class="flex justify-between mt-6 mb-6">
               <p class="text-[#212121] text-[14px] font-DanaDemibold">قیمت:</p>
-              <p class="text-[#121212] text-[18px] font-DanaDemibold">۵۶۰/۰۰۰ تومان</p>
+              <p class="text-[#121212] text-[18px] font-DanaDemibold">{{product.price|intcomma}} تومان</p>
             </div>
-            <button class=" w-full h-10  bg-Primary  text-white rounded-xl  text-[14px]">افزودن به سبد خرید</button>
+            <button class=" w-full h-10  bg-Primary  text-white rounded-xl  text-[14px]" onclick="addProd(`{{product.pk}}`)">
+              افزودن به سبد خرید
+            </button>
           </div>
           <!-- Section Commnet -->
           <section class="mt-8 mb-8 block lg:hidden">
@@ -353,7 +355,7 @@ function addProd(product_id) {
   },
   success: function(response){
     console.log(response)
-    $('#count-cart-badge').html(response.total_quantity)
+    $('.count-cart-badge').html(response.total_quantity)
   },
   error: function(jqXHR,textStatus,errorThrown) {
     console.log(response)
