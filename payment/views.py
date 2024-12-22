@@ -9,10 +9,11 @@ from .models import PaymentModel,PaymentStatus,OrderModel,OrderStatusModel
 class PaymentCompleteView(TemplateView):
     template_name = 'payment/complete.html'
 
+class PaymentFaildView(TemplateView):
+    template_name = 'payment/faild.html'
 
 
 class VerificationView(View):
-
 
     def get(self, request, *args, **kwargs):
         payment_obj = get_object_or_404(PaymentModel,authority=request.GET.get('Authority'))
@@ -25,12 +26,10 @@ class VerificationView(View):
                 order.status = OrderStatusModel.success.value
                 payment_obj.save()
                 order.save()
-                messages.success(request, 'پرداخت شما با موفقیت انجام شد')
                 return redirect(reverse_lazy('payment:complete'))
         except KeyError:
             payment_obj.status = PaymentStatus.faild.value
             order.status = OrderStatusModel.faild.value
             payment_obj.save()
             order.save()
-            return redirect(reverse_lazy('payment:complete'))
-        
+            return redirect(reverse_lazy('payment:faild'))
