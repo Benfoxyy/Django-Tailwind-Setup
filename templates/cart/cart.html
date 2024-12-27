@@ -19,13 +19,13 @@
           <p class="text-[#000000] text-[17.8px] font-DanaDemibold mb-[56px] mr-6">سبد خرید شما</p>
           {% for product in cartlist %}
             <div class="flex mt-10">
-              <img src="{{product.prod_obj.image.url}}" alt="">
+              <img src="{{product.prod_obj.image.url}}" class="w-[200px]" alt="">
               <div>
                 <p class="text-[22px] font-DanaDemibold text-[#212121]">{{product.prod_obj.name}}</p>
                 <p class="my-4 font-DanaMedium text-xl">فلاور گاردن</p>
                 <div>
                   <span class="inline-block ml-6 text-[#353535] text-base">قیمت:</span>
-                  <span class="inline-block lg:text-xl  text-[#121212]  ">{{product.prod_obj.price|intcomma}} تومان</span>
+                  <span class="inline-block lg:text-xl  text-[#121212]">{{product.prod_obj.price|intcomma}} تومان</span>
                 </div>
                 <!-- button shooping -->
                 <button class="py-2 px-2 border border-[#CBCBCB] bg-[#FFFFFF] w-[154px] h-[59px] rounded-lg mt-4">
@@ -38,10 +38,6 @@
                 </button>
               </div>
             </div>
-            {% if not forloop.last %}
-            <div class="border border-[#737993]">
-            </div>
-            {% endif %}
             {% endfor %}
 
           </div>
@@ -88,7 +84,7 @@
           <img src="{{product.prod_obj.image.url}}" alt="گیاه طبیعی یوکا" class="w-32 md:w-40 rounded-lg">
     
           <!--  Info Product -->
-          <div class="flex flex-col">
+          <div class="flex flex-col mt-8">
             <p class="text-base md:text-lg font-DanaDemibold text-gray-800">{{product.prod_obj.name}}</p>
             <p class="my-2 text-sm md:text-base font-DanaMedium text-gray-600">فلاور گاردن</p>
     

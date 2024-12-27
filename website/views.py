@@ -4,7 +4,7 @@ from .models import ProductModel,ProductCategoryModel
 from cart.cart import CartSession
 
 class WebsiteHomeView(ListView):
-    template_name = 'website/index.html'
+    template_name = 'website/home.html'
     queryset = ProductModel.objects.all()
     
     def get_context_data(self, **kwargs):
