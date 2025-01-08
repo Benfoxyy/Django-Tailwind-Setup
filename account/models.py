@@ -70,7 +70,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=255,null=True, blank=True)
     last_name = models.CharField(max_length=255,null=True, blank=True)
     address = models.TextField(null=True, blank=True)
-    avatar = models.ImageField(upload_to='products/',default='default/profile-default.png')
+    avatar = models.ImageField(upload_to='profile/',default='default/profile-default.png')
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 

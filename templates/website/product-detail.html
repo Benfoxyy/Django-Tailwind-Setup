@@ -10,17 +10,18 @@
 {% load product_tags %}
 
 {% block content %}
-  
 
-    <!-- Icon Section pdf -->
-  <div class="flex items-center justify-start mr-4 md:mr-28 mt-6 text-sm md:text-lg gap-x-2 font-DanaDemibold text-Primary no-underline">
-        <img src="{% static 'IMG/Svg/home.png' %}" alt="خانه">
-        <a href="">خانه</a>
-        <img src="{% static 'IMG/Svg/arrow.png' %}" alt="فلش">
-        <a href="">گیاه طبیعی</a>
-        <img src="{% static 'IMG/Svg/arrow.png' %}" alt="فلش">
-        <a href="">گیاه یوکا</a>
-   </div>
+
+<!-- Icon Section pdf -->
+<div
+  class="flex items-center justify-start mr-4 md:mr-28 mt-6 text-sm md:text-lg gap-x-2 font-DanaDemibold text-Primary no-underline">
+  <img src="{% static 'IMG/Svg/home.png' %}" alt="خانه">
+  <a href="">خانه</a>
+  <img src="{% static 'IMG/Svg/arrow.png' %}" alt="فلش">
+  <a href="">گیاه طبیعی</a>
+  <img src="{% static 'IMG/Svg/arrow.png' %}" alt="فلش">
+  <a href="">گیاه یوکا</a>
+</div>
 <!-- Start of the main section -->
 <main>
   <section class="mt-24 hidden lg:block">
@@ -29,7 +30,7 @@
       <div class="grid grid-cols-12">
         <!-- Image Column -->
         <div class="col-span-4">
-          <img src="{{product.image.url}}" class="w-[420px]" alt="Plant Image">
+          <img src="{{product.image.url}}" class="w-[420px] rounded-xl" alt="Plant Image">
         </div>
         <!-- Plant Details Column -->
         <div class="col-span-5 mr-[28px] ml-[81px]">
@@ -69,14 +70,6 @@
                 <p class="text-base text-[#121212] mt-1 font-DanaDemibold">۲۵۰x۲۵۰x۸۰۰</p>
               </div>
             </div>
-            <!-- Features Grid Row 3 -->
-            <div class="flex gap-5 mt-10">
-              <!-- Feature: Sunlight Requirement -->
-              <div class="bg-[#EFEFEF] w-[207px] h-[70px] py-2 px-3 rounded-lg">
-                <p class="text-[14px] text-[#353535] font-DanaMedium">وضعیت نسبت به آفتاب</p>
-                <p class="text-base text-[#121212] mt-1 font-DanaDemibold">آفتاب دوست</p>
-              </div>
-            </div>
           </div>
           <!-- Button to view all features -->
           <button class="w-[167px] h-10 border border-[#417F56] bg-white md:mr-[7rem] mt-[47px] rounded-xl px-2">
@@ -104,7 +97,8 @@
               <p class="text-xl font-DanaMedium">{{product.price|intcomma}} تومان</p>
             </div>
             <!-- Add to Cart Button -->
-            <button class="w-[264px] h-12 bg-Primary text-white rounded-2xl px-4 mt-8" onclick="addProd(`{{product.pk}}`)">
+            <button class="w-[264px] h-12 bg-Primary text-white rounded-2xl px-4 mt-8"
+              onclick="addProd(`{{product.pk}}`)">
               افزودن به سبد خرید
             </button>
           </div>
@@ -117,88 +111,90 @@
     <div class="container">
       <!-- Section Title -->
       <p class="text-start text-base md:text-2xl md:mr-14 font-DanaDemibold mb-6">گیاه های مشابه</p>
-  
+
       <!-- Grid Container -->
       <div class="flex justify-center items-center">
         <div class="grid grid-cols-4 gap-6 p-4">
-  
+
           {% show_similar_products product %}
 
         </div>
       </div>
     </div>
   </section>
-      
-      <!-- Comments and Ratings Section Mobile -->
+
+  <!-- Comments and Ratings Section Mobile -->
   <section class="mb-10 mt-[65px]  block lg:hidden">
-        <div class="container">
-          <div class="flex justify-center items-center">
-            <div>
-              <img src="{{product.image.url}}" alt="">
-            </div>
-          </div>
-          <div>
-            <p class="text-center text-[#212121] text-base mt-8 mb-8 font-DanaDemibold">گیاه طبیعی یوکا</p>  
-          </div>
-          <div>
-            <div  class="flex gap-x-3 justify-center items-center mb-4">
-              <button class="w-[85px] h-[50px] bg-[#D9D9D9]  p-3 rounded-xl whitespace-nowrap ">
-                <p class="text-xs font-DanaMedium text-[#353535]  ">کیفیت فرش</p>
-                <p class="text-xs font-DanaMedium text-[#121212]">درجه یک</p>
-              </button>
-              <button class="w-[85px] h-[50px] bg-[#D9D9D9]  p-3 rounded-xl  whitespace-nowrap ">
-                <p class="text-xs font-DanaMedium text-[#353535]   ">رنگ زمینه</p> 
-                <p class="text-xs font-DanaMedium text-[#121212] ">آبی</p>
-              </button>
-              <button class="w-[160px] h-[40px]  bg-white p-3 rounded-xl whitespace-nowrap ">
-                <p class="text-[14px] rounded-xl font-DanaMedium text-Primary whitespace-nowrap">مشاهده همه ویژگی ها</p> 
-              </button>
-            </div>
-          </div>
-          <hr>    
-          <div class="mx-auto mb-20">
-            <p class="mt-[56px] mb-6 text-[#212121] text-base font-DanaDemibold">فروشنده</p>
-            <div class="flex gap-x-2 font-DanaDemibold">
-              <p class="text-[#212121] text-base">فلاور گاردن</p>
-              <p class="text-[14px] text-[#212121]">عملکرد عالی</p>
-            </div>
-            <p class="mb-5 mt-6 text-[14px] text-[#000000]">۴.۶</p>
-            <hr>
-            <div class="flex justify-between mt-6 mb-6">
-              <p class="text-[#212121] text-[14px] font-DanaDemibold">قیمت:</p>
-              <p class="text-[#121212] text-[18px] font-DanaDemibold">{{product.price|intcomma}} تومان</p>
-            </div>
-            <button class=" w-full h-10  bg-Primary  text-white rounded-xl  text-[14px]" onclick="addProd(`{{product.pk}}`)">
-              افزودن به سبد خرید
-            </button>
-          </div>
-          <!-- Section Commnet -->
-       
-          
+    <div class="container">
+      <div class="flex justify-center items-center">
+        <div>
+          <img src="{{product.image.url}}" alt="">
         </div>
+      </div>
+      <div>
+        <p class="text-center text-[#212121] text-base mt-8 mb-8 font-DanaDemibold">گیاه طبیعی یوکا</p>
+      </div>
+      <div>
+        <div class="flex gap-x-3 justify-center items-center mb-4">
+          <button class="w-[85px] h-[50px] bg-[#D9D9D9]  p-3 rounded-xl whitespace-nowrap ">
+            <p class="text-xs font-DanaMedium text-[#353535]  ">کیفیت فرش</p>
+            <p class="text-xs font-DanaMedium text-[#121212]">درجه یک</p>
+          </button>
+          <button class="w-[85px] h-[50px] bg-[#D9D9D9]  p-3 rounded-xl  whitespace-nowrap ">
+            <p class="text-xs font-DanaMedium text-[#353535]   ">رنگ زمینه</p>
+            <p class="text-xs font-DanaMedium text-[#121212] ">آبی</p>
+          </button>
+          <button class="w-[160px] h-[40px]  bg-white p-3 rounded-xl whitespace-nowrap ">
+            <p class="text-[14px] rounded-xl font-DanaMedium text-Primary whitespace-nowrap">مشاهده همه ویژگی ها</p>
+          </button>
+        </div>
+      </div>
+      <hr>
+      <div class="mx-auto mb-20">
+        <p class="mt-[56px] mb-6 text-[#212121] text-base font-DanaDemibold">فروشنده</p>
+        <div class="flex gap-x-2 font-DanaDemibold">
+          <p class="text-[#212121] text-base">فلاور گاردن</p>
+          <p class="text-[14px] text-[#212121]">عملکرد عالی</p>
+        </div>
+        <p class="mb-5 mt-6 text-[14px] text-[#000000]">۴.۶</p>
+        <hr>
+        <div class="flex justify-between mt-6 mb-6">
+          <p class="text-[#212121] text-[14px] font-DanaDemibold">قیمت:</p>
+          <p class="text-[#121212] text-[18px] font-DanaDemibold">{{product.price|intcomma}} تومان</p>
+        </div>
+        <button class=" w-full h-10  bg-Primary  text-white rounded-xl  text-[14px]"
+          onclick="addProd(`{{product.pk}}`)">
+          افزودن به سبد خرید
+        </button>
+      </div>
+      <!-- Section Commnet -->
+
+
+    </div>
   </section>
 </main>
 {% endblock content %}
 
 {% block js %}
 <script>
-function addProd(product_id) {
-  $.ajax({
-  type: "POST",
-  url: "/cart/" + product_id + "/add/",
-  data: {
-    'product_id': product_id,
-    csrfmiddlewaretoken: '{{ csrf_token }}',
-  },
-  success: function(response){
-    console.log(response)
-    $('.count-cart-badge').html(response.total_quantity)
-  },
-  error: function(jqXHR,textStatus,errorThrown) {
-    console.log(response)
+  function addProd(product_id) {
+    $.ajax({
+      type: "POST",
+      url: "/cart/" + product_id + "/add/",
+      data: {
+        'product_id': product_id,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+      },
+      success: function (response) {
+        console.log(response)
+        $('.count-cart-badge').html(response.total_quantity)
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(response)
+      }
+    });
   }
-});
-}
 </script>
 {% endblock js %}
+
 </html>

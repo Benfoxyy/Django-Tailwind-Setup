@@ -1,7 +1,6 @@
 from django.contrib.auth.views import LoginView,LogoutView
 from django.contrib.auth import login
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 from .forms import AccountLoginForm,AccountRegisterForm

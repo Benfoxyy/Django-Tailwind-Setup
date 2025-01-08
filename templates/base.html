@@ -4,159 +4,174 @@
 
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-  <!-- Head -->
-    <head>
-        {% tailwind_css %}
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>گیاه لند</title>
-        <link rel="stylesheet" href="{% static 'styles/app.css' %}">
-        <link rel="icon" href="{% static 'IMG/header.png' %}">
-        <!-- CSS Toastify -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    </head>
+<!-- Head -->
+
+<head>
+  {% tailwind_css %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>گیاه لند</title>
+  <link rel="stylesheet" href="{% static 'styles/app.css' %}">
+  <link rel="icon" href="{% static 'IMG/header.png' %}">
+  <!-- CSS Toastify -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
 <!-- Body -->
-<body class="font-Dana overflow-x-hidden bg-gray-100">      
-<!-- Desktop Navbar  -->
-<header class="hidden md:block bg-gray-100 px-5 lg:px-10 py-[24px]"> 
-  <nav class="flex justify-between flex-nowrap gap-x-2 md:gap-x-5 px-12 items-center">
-    <!-- Right Side Navigation -->
-    <div>
-      <ul class="flex gap-x-2 lg:gap-x-5 items-center text-base lg:text-[20px] ">
-        <li>
-          <a href="{% url 'website:home' %}" class="font-DanaDemibold  text-Primary text-[27px] lg:text-[30px] whitespace-nowrap">گیاه لند</a>
-        </li>
-        <!-- <li class="font-DanaMedium ">
+
+<body class="font-Dana overflow-x-hidden bg-gray-100">
+  <!-- Desktop Navbar  -->
+  <header class="hidden md:block bg-gray-100 px-5 lg:px-10 py-[24px]">
+    <nav class="flex justify-between flex-nowrap gap-x-2 md:gap-x-5 px-12 items-center">
+      <!-- Right Side Navigation -->
+      <div>
+        <ul class="flex gap-x-2 lg:gap-x-5 items-center text-base lg:text-[20px] ">
+          <li>
+            <a href="{% url 'website:home' %}"
+              class="font-DanaDemibold  text-Primary text-[27px] lg:text-[30px] whitespace-nowrap">گیاه لند</a>
+          </li>
+          <!-- <li class="font-DanaMedium ">
           <a href="{% url 'website:home' %}" class="text-Primary whitespace-nowrap">صفحه اصلی</a>
         </li> -->
-        <li class="font-DanaMedium whitespace-nowrap hover:text-Primary transition-colors">
-          <a href="{% url 'website:home' %}">صفحه اصلی</a>
-        </li>
-        <li class="font-DanaMedium whitespace-nowrap hover:text-Primary transition-colors">
-          <a href="#footer-id">درباره ما</a>
-        </li>
-        <li class="font-DanaMedium whitespace-nowrap hover:text-Primary transition-colors">
-          <a href="#">وبلاگ</a>
-        </li>
-        <li class="font-DanaMedium whitespace-nowrap hover:text-Primary transition-colors">
-          <a href="#section-footer">تماس با ما</a>
-        </li>
-      </ul>
-    </div>
-    <input class="bg-gray-100 focus:bg-slate-200 focus:outline-none focus:transition-colors p-3 rounded-xl mt-3 text-[#737993] border border-Primary  w-[25%]" placeholder="سرچ گیاه" type="search"></input>
-    <!-- Left Side Navigation (Icons & Login) -->
-    <div class="flex items-center gap-x-4 text-[20px] cursor-pointer">
-      <!--  Shopping Icons -->
-      <div class="flex gap-x-3 relative">
-        <div class=" absolute -top-1 -right-1 flex-center text-[10px] size-5 border-2 border-white  rounded-full bg-green-500 text-white  text-center font-DanaDemibold count-cart-badge">{{cart.get_cart_quantity}}</div>
-        <div style="border: 1px solid #417F56; padding: 10px 12px; border-radius: 12px; flex-shrink: 0;">
+          <li class="font-DanaMedium whitespace-nowrap hover:text-Primary transition-colors">
+            <a href="{% url 'website:home' %}">صفحه اصلی</a>
+          </li>
+          <li class="font-DanaMedium whitespace-nowrap hover:text-Primary transition-colors">
+            <a href="#footer-id">درباره ما</a>
+          </li>
+          <li class="font-DanaMedium whitespace-nowrap hover:text-Primary transition-colors">
+            <a href="#">وبلاگ</a>
+          </li>
+          <li class="font-DanaMedium whitespace-nowrap hover:text-Primary transition-colors">
+            <a href="#section-footer">تماس با ما</a>
+          </li>
+        </ul>
+      </div>
+      <input
+        class="bg-gray-100 focus:bg-slate-200 focus:outline-none focus:transition-colors p-3 rounded-xl mt-3 text-[#737993] border border-Primary  w-[25%]"
+        placeholder="سرچ گیاه" type="search"></input>
+      <!-- Left Side Navigation (Icons & Login) -->
+      <div class="flex items-center gap-x-4 text-[20px] cursor-pointer">
+        <!--  Shopping Icons -->
+        <div class="flex gap-x-3 relative">
+          <div
+            class=" absolute -top-1 -right-1 flex-center text-[10px] size-5 border-2 border-white  rounded-full bg-green-500 text-white  text-center font-DanaDemibold count-cart-badge">
+            {{cart.get_cart_quantity}}</div>
+          <div style="border: 1px solid #417F56; padding: 10px 12px; border-radius: 12px; flex-shrink: 0;">
+            <a href="{% url 'cart:cart-list' %}">
+              <img src="{% static 'IMG/Svg/HedaerSVG (3).png' %}" class="w-[22px] h-[22px]" alt="">
+            </a>
+          </div>
+        </div>
+        <!-- Login Icon -->
+        {% if user.is_authenticated %}
+        <a href="{% url 'dashboard:profile' pk=user.pk %}">
+          <img src="{{user.user_profile.avatar.url}}" class="w-[60px] h-[60px] rounded-full">
+        </a>
+        {% else %}
+
+        <div class="flex gap-x-2 items-center border border-Primary rounded-lg"
+          style="padding: 10px 16px; flex-shrink: 0; margin-right: 10px;">
+          <a href="{% url 'account:login' %}">
+            <img src="{% static 'IMG/Svg/HedaerSVG (2).png' %}" class="w-[18px] h-[22px]" alt="">
+          </a>
+          <a href="{% url 'account:login' %}" class="hidden xl:inline-block text-Primary text-[18px]">ورود | ثبت نام</a>
+        </div>
+        {% endif %}
+      </div>
+    </nav>
+
+  </header>
+  <!-- Mobile Navbar  -->
+  <header class="block md:hidden bg-gray-100 px-5 py-[16px]">
+    <nav class="flex justify-between items-center px-4">
+
+      <!-- RIGHT Side (Menu Toggle and Logo) -->
+      <div class="flex items-center gap-x-4">
+        <div style="background-color: #dddadae7; padding: 15px 10px; border-radius: 9.5px; cursor: pointer;"
+          id="menu-toggle">
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.5 10H15.5V8.33333H0.5V10ZM0.5 5.83333H15.5V4.16667H0.5V5.83333ZM0.5 0V1.66667H15.5V0H0.5Z"
+              fill="#121212" />
+          </svg>
+        </div>
+        <a href="#" class="font-DanaDemibold text-Primary text-base">گیاه لند</a>
+      </div>
+      <!-- LEFT Side (Icons) -->
+      <div class="cursor-pointer flex items-center gap-x-4 relative">
+        <div
+          class=" absolute -top-1 -right-1 flex-center text-[11px] size-5 border-2 border-white  rounded-full bg-green-500 text-white  text-center count-cart-badge">
+          {{cart.get_cart_quantity}}</div>
+
+        <div class="rounded-lg border border-Primary w-8 h-8 ">
           <a href="{% url 'cart:cart-list' %}">
-            <img src="{% static 'IMG/Svg/HedaerSVG (3).png' %}" class="w-[22px] h-[22px]" alt="">
+            <img src="{% static 'IMG/Svg/HedaerSVG (3).png' %}" alt="" style="margin: 5px;">
           </a>
         </div>
-      </div>
-      <!-- Login Icon -->
-       {% if user.is_authenticated %}
-      <a href="{% url 'dashboard:profile' pk=user.pk %}">
-        <img src="{{user.user_profile.avatar.url}}" class="w-[60px] h-[60px] rounded-full" >
-      </a>
-       {% else %}
-
-      <div class="flex gap-x-2 items-center border border-Primary rounded-lg" style="padding: 10px 16px; flex-shrink: 0; margin-right: 10px;">
-        <a href="{% url 'account:login' %}">
-          <img src="{% static 'IMG/Svg/HedaerSVG (2).png' %}" class="w-[18px] h-[22px]" alt="">
+        {% if user.is_authenticated %}
+        <a href="{% url 'dashboard:profile' pk=user.pk %}">
+          <img src="{{user.user_profile.avatar.url}}" class="w-[60px] h-[60px] rounded-full">
         </a>
-        <a href="{% url 'account:login' %}"  class="hidden xl:inline-block text-Primary text-[18px]">ورود | ثبت نام</a>
+        {% else %}
+        <div class="border border-Primary rounded-lg w-8 h-8">
+          <a href="{% url 'account:login' %}">
+            <img src="{% static 'IMG/Svg/HedaerSVG (2).png' %}" alt="" class="w-5 h-5" style="margin: 5px;">
+          </a>
+        </div>
+        {% endif %}
       </div>
-      {% endif %}
+    </nav>
+    <!-- Mobile Navigation Menu ( Hidden)  -->
+    <div id="mobile-menu" class="hidden bg-gray-100 px-5 py-[16px]">
+      <ul class="flex flex-col gap-y-4 text-base font-DanaDemibold items-center">
+        <li class=""><a href="{% url 'website:home' %}" class="font-DanaMedium text-Primary">صفحه اصلی</a></li>
+        <li class="hover:text-Primary transition-colors"><a href="#">گیاه پزشک</a></li>
+        <li class="hover:text-Primary transition-colors"><a href="#footer-id">درباره ما</a></li>
+        <li class="hover:text-Primary transition-colors"><a href="#footer-id">تماس با ما</a></li>
+      </ul>
     </div>
-  </nav>
-  
-</header>
-<!-- Mobile Navbar  -->
-<header class="block md:hidden bg-gray-100 px-5 py-[16px]">
-  <nav class="flex justify-between items-center px-4">
-    
-    <!-- RIGHT Side (Menu Toggle and Logo) -->
-    <div class="flex items-center gap-x-4">
-      <div style="background-color: #dddadae7; padding: 15px 10px; border-radius: 9.5px; cursor: pointer;" id="menu-toggle">
-        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0.5 10H15.5V8.33333H0.5V10ZM0.5 5.83333H15.5V4.16667H0.5V5.83333ZM0.5 0V1.66667H15.5V0H0.5Z" fill="#121212"/>
-        </svg>
-      </div>
-      <a href="#" class="font-DanaDemibold text-Primary text-base">گیاه لند</a>
-    </div>
-    <!-- LEFT Side (Icons) -->
-    <div class="cursor-pointer flex items-center gap-x-4 relative">
-      <div class=" absolute -top-1 -right-1 flex-center text-[11px] size-5 border-2 border-white  rounded-full bg-green-500 text-white  text-center count-cart-badge">{{cart.get_cart_quantity}}</div>
+    <input
+      class="  bg-gra focus:bg-slate-200  focus:outline-none focus:transition-colors w-full font-DanaDemibold p-3 rounded-xl mt-3  border border-Primary"
+      type="search" placeholder="سرچ گیاه"></input>
+  </header>
 
-      <div class="rounded-lg border border-Primary w-8 h-8 ">
-        <a href="{% url 'cart:cart-list' %}">
-          <img src="{% static 'IMG/Svg/HedaerSVG (3).png' %}" alt="" style="margin: 5px;">
-        </a>
-      </div>
-      {% if user.is_authenticated %}
-      <a href="{% url 'dashboard:profile' pk=user.pk %}">
-        <img src="{{user.user_profile.avatar.url}}" class="w-[60px] h-[60px] rounded-full" >
-      </a>
-      {% else %}
-      <div class="border border-Primary rounded-lg w-8 h-8">
-        <a href="{% url 'account:login' %}">
-          <img src="{% static 'IMG/Svg/HedaerSVG (2).png' %}" alt="" class="w-5 h-5" style="margin: 5px;">
-        </a>
-      </div>
-      {% endif %}
-    </div>
-  </nav>
-   <!-- Mobile Navigation Menu ( Hidden)  -->
-   <div id="mobile-menu" class="hidden bg-gray-100 px-5 py-[16px]"> 
-    <ul class="flex flex-col gap-y-4 text-base font-DanaDemibold items-center">
-      <li class=""><a href="{% url 'website:home' %}" class="font-DanaMedium text-Primary">صفحه اصلی</a></li>
-      <li class="hover:text-Primary transition-colors"><a href="#">گیاه پزشک</a></li>
-      <li class="hover:text-Primary transition-colors"><a href="#footer-id">درباره ما</a></li>
-      <li class="hover:text-Primary transition-colors"><a href="#footer-id">تماس با ما</a></li>
-    </ul>
-  </div> 
-  <input class="  bg-gra focus:bg-slate-200  focus:outline-none focus:transition-colors w-full font-DanaDemibold p-3 rounded-xl mt-3  border border-Primary" type="search" placeholder="سرچ گیاه"></input>
-</header>
-
-{% block content %}{% endblock content %}
+  {% block content %}{% endblock content %}
 
 
-<!-- Footer -->
-<footer class=" bg-slate-200 pt-10 pb-5 mt-[64px] lg:mt-[130px]"  id="footer-id">
+  <!-- Footer -->
+  <footer class=" bg-slate-200 pt-10 pb-5 mt-[64px] lg:mt-[130px]" id="footer-id">
     <div class="container ">
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 text-center lg:text-left">
         <!-- text Info -->
         <div class="space-y-4 mx-auto lg:mx-0 order-2 lg:order-1">
-          <p class="text-[17.5px] md:text-xl lg:text-2xl font-semibold text-green-600 mb-3 md:mb-6 font-DanaDemibold">گیاه لند</p>
+          <p class="text-[17.5px] md:text-xl lg:text-2xl font-semibold text-green-600 mb-3 md:mb-6 font-DanaDemibold">
+            گیاه لند</p>
           <p class="text-[#505050] leading-5 text-[14px]  md:text-base font-DanaDemibold">
             گیاه لند سعی بر این دارد با ارائه خدمات نوین در حوزه فروش گیاهان باعث راحتی شما در خرید انواع گیاه شود.
             تنوع گیاهان و همچنین ایجاد بستری مناسب برای مشاوره با گیاه پزشک از دیگر مزیت‌های گیاه لند می‌باشد.
           </p>
           <div class="text-[#444859] text-base md:text-xl mt-10 md:mt-[51px] font-DanaMedium" id="section-footer">
-            <span class="inline-block">تلفن پشتیبانی  :  </span>
+            <span class="inline-block">تلفن پشتیبانی : </span>
             <span class="inline-block "> 0212۴44 </span>
           </div>
         </div>
-         <!-- column 1 -->
+        <!-- column 1 -->
         <div class="space-y-2 mx-auto lg:mx-0 order-1 lg:order2 ">
           <p class="text-[#505050] text-base md:text-xl font-DanaDemibold  mb-6">آپارتمان</p>
           <p class="text-[#606060] text-base md:text-xl font-DanaMedium">بابا آدم</p>
           <p class="text-[#606060] text-base md:text-xl font-DanaMedium">یوکا</p>
           <p class="text-[#606060] text-base md:text-xl font-DanaMedium">سانسوریا</p>
         </div>
-        
-         <!-- column 2 -->
+
+        <!-- column 2 -->
         <div class="space-y-2 mx-auto lg:mx-0 order-1 lg:order2">
           <p class="text-[#505050] text-base md:text-xl font-DanaDemibold  mb-6">تزئینی</p>
           <p class="text-[#606060] text-base md:text-xl font-DanaMedium">پشم</p>
           <p class="text-[#606060] text-base md:text-xl font-DanaMedium">گراسولا</p>
           <p class="text-[#606060] text-base md:text-xl font-DanaMedium">گراسولا حرفه ای</p>
         </div>
-        
-       <!-- column 3 -->
+
+        <!-- column 3 -->
         <div class="space-y-2 mx-auto lg:mx-0 order-1 lg:order2">
           <p class="text-[#505050] text-base md:text-xl font-DanaDemibold  mb-6">کادویی</p>
           <p class="text-[#606060] text-base md:text-xl font-DanaMedium">آنتوریوم</p>
@@ -167,7 +182,7 @@
       <!-- Name Developer -->
       <div class="flex justify-center items-center mt-10 md:mt-16 px-4">
         <p class="text-center text-sm md:text-base lg:text-lg">
-          طراحی و اجرا توسط : 
+          طراحی و اجرا توسط :
           <span class="text-primary text-[16px] md:text-xl lg:text-2xl font-DanaDemibold">
             امیرمحمد شرفی نیک &copy;
           </span>
@@ -176,15 +191,21 @@
     </div>
   </footer>
 
-  
+  {% include "messages.html" %}
+
   <!-- JS Toastify -->
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  
-  {% include "messages.html" %}
-  
-  {% block js %}
 
-  {% endblock js %}
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+  {% block js %}{% endblock js %}
 
 </body>
+
 </html>

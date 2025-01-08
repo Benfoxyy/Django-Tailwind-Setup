@@ -20,7 +20,7 @@ class CouponModel(models.Model):
 
 class OrderModel(models.Model):
     user = models.ForeignKey('account.User',on_delete=models.PROTECT)
-    coupon = models.OneToOneField(CouponModel,on_delete=models.PROTECT,blank=True,null=True)
+    coupon = models.ForeignKey(CouponModel, on_delete=models.PROTECT, blank=True, null=True)
     status = models.IntegerField(choices=OrderStatusModel.choices,default=OrderStatusModel.pending.value)
     final_price = models.DecimalField(default=0,max_digits=10,decimal_places=0)
 
