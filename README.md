@@ -13,6 +13,21 @@
 <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="40" height="40"/> </a>
 </p>
 
+# Demo
+
+<img src='./Documents/sign-up.png'>
+<hr>
+<img src='./Documents/profile.png'>
+<hr>
+<img src='./Documents/home.png'>
+<hr>
+<img src='./Documents/shop.png'>
+<hr>
+<img src='./Documents/cart.png'>
+<hr>
+<img src='./Documents/payment.png'>
+<hr>
+
 # Guideline
 - [Collabration](#collabration)
 - [Tailwind Setup](#tailwind-setup)

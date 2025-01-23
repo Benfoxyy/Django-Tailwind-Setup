@@ -1,7 +1,6 @@
 from django.views.generic import View
 from django.urls import reverse_lazy
 from django.shortcuts import redirect,get_object_or_404
-from django.contrib import messages
 from django.views.generic import TemplateView
 from .zarinpal_client import ZarinPalSandbox
 from .models import PaymentModel,PaymentStatus,OrderModel,OrderStatusModel
