@@ -23,6 +23,8 @@
 <hr>
 <img src='./Documents/shop.png'>
 <hr>
+<img src='./Documents/product-detail.png'>
+<hr>
 <img src='./Documents/cart.png'>
 <hr>
 <img src='./Documents/payment.png'>
