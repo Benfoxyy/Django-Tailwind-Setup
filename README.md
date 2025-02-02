@@ -41,7 +41,7 @@
 
 
 # Collabration
-This project is collabration between me as BackEnd and <a href='https://github.com/Amir-Sharafi-86'>Sharafi</a> as FrontEnd developer
+This project is collabration between <a href='https://github.com/Benfoxyy'>Benyamin</a> as BackEnd and <a href='https://github.com/Amir-Sharafi-86'>Sharafi</a> as FrontEnd developer
 
 # Tailwind Setup
 
